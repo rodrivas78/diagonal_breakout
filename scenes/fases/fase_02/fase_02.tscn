@@ -158,8 +158,8 @@ position = Vector2(184, 0)
 texture = ExtResource("8_h7ux7")
 
 [node name="DiagonalA" parent="." groups=["diagonal_a"] instance=ExtResource("9_rc3jw")]
-visible = false
-position = Vector2(403, 299)
+position = Vector2(401, 298)
 
 [node name="DiagonalB" parent="." groups=["diagonal_b"] instance=ExtResource("8_crhme")]
+visible = false
 position = Vector2(403, 298)

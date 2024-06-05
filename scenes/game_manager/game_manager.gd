@@ -15,7 +15,9 @@ var blocos_na_fase : int = 0
 @export_group("Controle dos Bumpers")
 @export var diagonalA : Node2D
 @export var diagonalB : Node2D
-@export var jump_positions = [Vector2(100, 200), Vector2(300, 200), Vector2(500, 200)]
+var i : int = 0 
+@export var yPosition = [184, 298, 412]
+@export var jump_positions = [Vector2i(211, yPosition[i]), Vector2i(401, yPosition[i]), Vector2i(595, yPosition[i])]
 var current_jump_index = 0
 
 # Limites da Bola
@@ -57,9 +59,14 @@ func receber_inputs() -> void:
 			current_jump_index += 1
 		
 	elif Input.is_action_pressed("mv-direito"):
-		x_offset = x_offset + 100
-		print(x_offset)
-		diagonalA.position = Vector2(x_offset, 200)
+		#x_offset = x_offset + 100
+		#print(x_offset)
+		#diagonalA.position = Vector2(x_offset, 200)
+		if i < yPosition.size() && current_jump_index < jump_positions.size():
+			diagonalA.position = jump_positions[current_jump_index]
+			print("valor de % " [i])
+			#print("valor de % " [yPosition[i]])
+			i += 1
 		
 	#TODO - Definir a posição inicial dos paddles
 	#TODO - e movimentos para cima e para baixo. 
