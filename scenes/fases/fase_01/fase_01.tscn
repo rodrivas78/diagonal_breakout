@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://cu3p3i2gvatsj"]
+
+[ext_resource type="Texture2D" uid="uid://dkox74bf3csop" path="res://assets/sprites/campo-roxo.png" id="1_y5hhp"]
+[ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_0h4wr"]
+[ext_resource type="PackedScene" uid="uid://h17w5q1iroht" path="res://scenes/bola/bola.tscn" id="3_jy2ga"]
+[ext_resource type="PackedScene" uid="uid://dh5rpeuhfoqpk" path="res://scenes/bloco/bloco.tscn" id="4_i8ss1"]
+[ext_resource type="PackedScene" uid="uid://74yx6akk6vh3" path="res://scenes/game_manager/game_manager.tscn" id="5_rjyp1"]
+[ext_resource type="PackedScene" uid="uid://bgvhh54pyw0f3" path="res://scenes/diagonal_a/diagonala.tscn" id="6_q67g7"]
+[ext_resource type="PackedScene" uid="uid://b7bqh3a1f3ev5" path="res://scenes/diagonal_b/diagonalb.tscn" id="7_jt1tc"]
+
+[node name="Fase01" type="Node2D"]
+
+[node name="ImagemDeFundo" type="Sprite2D" parent="."]
+position = Vector2(400, 300)
+texture = ExtResource("1_y5hhp")
+
+[node name="Paddle" parent="." instance=ExtResource("2_0h4wr")]
+position = Vector2(400, 550)
+
+[node name="Bola" parent="." instance=ExtResource("3_jy2ga")]
+position = Vector2(400, 500)
+
+[node name="Blocos" type="Node2D" parent="."]
+
+[node name="Bloco" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_i8ss1")]
+position = Vector2(401, 319)
+game_manager = NodePath("../../GameManager")
+vida_do_bloco = 1
+
+[node name="GameManager" parent="." node_paths=PackedStringArray("blocos", "diagonalA", "diagonalB") instance=ExtResource("5_rjyp1")]
+blocos = NodePath("../Blocos")
+proxima_fase = "res://scenes/fases/fase_02/fase_02.tscn"
+diagonalA = NodePath("../DiagonalA")
+diagonalB = NodePath("../DiagonalB")
+
+[node name="DiagonalA" parent="." instance=ExtResource("6_q67g7")]
+visible = false
+position = Vector2(408, 144)
+
+[node name="DiagonalB" parent="." instance=ExtResource("7_jt1tc")]
+position = Vector2(408, 144)
