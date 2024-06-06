@@ -15,9 +15,11 @@ var blocos_na_fase : int = 0
 @export_group("Controle dos Bumpers")
 @export var diagonalA : Node2D
 @export var diagonalB : Node2D
-var i : int = 0 
+var iX : int = 1
+var iY : int = 1 
 @export var yPosition = [184, 298, 412]
-@export var jump_positions = [Vector2i(211, yPosition[i]), Vector2i(401, yPosition[i]), Vector2i(595, yPosition[i])]
+@export var xPosition = [211, 401, 595]
+@export var jump_positions = Vector2i(xPosition[iX], yPosition[iY])
 var current_jump_index = 0
 
 # Limites da Bola
@@ -41,6 +43,9 @@ func _process(delta):
 
 func receber_inputs() -> void:
 	# Reinicia a fase
+	jump_positions = Vector2i(xPosition[iX], yPosition[iY])
+	diagonalA.position = jump_positions
+	diagonalB.position = jump_positions
 	if Input.is_action_just_pressed("reiniciar"):
 		get_tree().reload_current_scene()
 	# Sai do jogo
@@ -54,20 +59,21 @@ func receber_inputs() -> void:
 		
 	# movimenta os paddles
 	if Input.is_action_just_pressed("mv-esquerdo"):
-		if current_jump_index < jump_positions.size():
-			diagonalA.position = jump_positions[current_jump_index]
-			current_jump_index += 1
-		
-	elif Input.is_action_pressed("mv-direito"):
-		#x_offset = x_offset + 100
-		#print(x_offset)
-		#diagonalA.position = Vector2(x_offset, 200)
-		if i < yPosition.size() && current_jump_index < jump_positions.size():
-			diagonalA.position = jump_positions[current_jump_index]
-			print("valor de % " [i])
-			#print("valor de % " [yPosition[i]])
-			i += 1
-		
+		if iX > 0:
+			iX -= 1
+			
+	elif Input.is_action_just_pressed("mv-direito"):
+		if iX < 2:
+			iX += 1
+			
+	elif Input.is_action_just_pressed("mv-baixo"):
+		if iY < 2:
+			iY += 1
+			
+	elif Input.is_action_just_pressed("mv-cima"):
+		if iY > 0:
+			iY -= 1	
+						
 	#TODO - Definir a posição inicial dos paddles
 	#TODO - e movimentos para cima e para baixo. 
 	
