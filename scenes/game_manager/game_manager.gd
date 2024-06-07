@@ -22,16 +22,6 @@ var iY : int = 1
 @export var jump_positions = Vector2i(xPosition[iX], yPosition[iY])
 var current_jump_index = 0
 
-# Limites da Bola
-#x_minimo : float = 0
-var x_offset : float = 100.0
-#var y_minimo : float = 0
-var y_offset : float = 100.0
-var newPosition : float = 0.0
-
-# Make the object visible
-#meu_objeto.deactivate()
-#my_object.activate()
 
 func _ready():
 	buscar_blocos()
@@ -46,6 +36,8 @@ func receber_inputs() -> void:
 	jump_positions = Vector2i(xPosition[iX], yPosition[iY])
 	diagonalA.position = jump_positions
 	diagonalB.position = jump_positions
+	if Input.is_action_just_pressed("nextStage"):
+		timer_do_passar_de_fase.start()
 	if Input.is_action_just_pressed("reiniciar"):
 		get_tree().reload_current_scene()
 	# Sai do jogo
@@ -54,8 +46,9 @@ func receber_inputs() -> void:
 	#alterna rebatedores
 	# Verifique se a tecla "espaço" foi pressionada
 	if Input.is_action_just_pressed("shift-paddle"):
-		diagonalA.visible = !diagonalA.visible
-		diagonalB.visible = !diagonalB.visible
+		diagonalA.visible = !diagonalA.visible 
+		diagonalB.visible = !diagonalB.visible 
+		ativa_ou_desativa_paddles()
 		
 	# movimenta os paddles
 	if Input.is_action_just_pressed("mv-esquerdo"):
@@ -86,6 +79,7 @@ func buscar_blocos() -> void:
 func atualizar_contagem_dos_blocos() -> void:
 	# Remove um Bloco da contagem e, SE não tiver mais nenhum, inicia o passar de fase
 	blocos_na_fase -= 1
+	print_debug(blocos_na_fase)
 	if blocos_na_fase <= 0:
 		timer_do_passar_de_fase.start()
 
@@ -93,17 +87,13 @@ func atualizar_contagem_dos_blocos() -> void:
 func _on_timer_do_passar_de_fase_timeout():
 	# Carrega a próxima fase
 	get_tree().change_scene_to_file(proxima_fase)
-
-# Posiciona o objeto na próxima posição de destino
-#func jump_to_next_position():
-	## Verifica se há mais posições de destino
-	#if current_jump_index < jump_positions.size():
-		## Move o objeto para a nova posição
-		#position = jump_positions[current_jump_index]
-		#current_jump_index += 1
-	#else:
-		## Volta para a primeira posição
-		#current_jump_index = 0
-		#position = jump_positions[current_jump_index]
 	
+func ativa_ou_desativa_paddles() -> void:
+	if diagonalA.visible == true:
+		diagonalB.process_mode = Node.PROCESS_MODE_DISABLED
+		diagonalA.process_mode = Node.PROCESS_MODE_ALWAYS
+	elif diagonalB.visible == true:
+		diagonalA.process_mode = Node.PROCESS_MODE_DISABLED
+		diagonalB.process_mode = Node.PROCESS_MODE_ALWAYS
+
 		

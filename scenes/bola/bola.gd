@@ -9,7 +9,7 @@ extends Area2D
 
 # Movimento da Bola
 var velocidade_da_bola : float = 400.0
-var posicao_inicial : Vector2 = Vector2(400, 500)
+var posicao_inicial : Vector2 = Vector2(403, 500)
 var direcao_inicial : Vector2 = Vector2(0, 0)
 var nova_direcao : Vector2 = Vector2(0, 0)
 
@@ -47,10 +47,10 @@ func resetar_bola() -> void:
 
 func escolher_direcao_inicial() -> void:
 	# Escolhe uma nova direção Horizontal
-	var x_aleatorio = [-1, 1].pick_random()
+	#var x_aleatorio = [-1, 1].pick_random()
 	
 	# Aplica a nova direção
-	direcao_inicial = Vector2(x_aleatorio, -1)
+	direcao_inicial = Vector2(0, -1)
 	nova_direcao = direcao_inicial
 	
 
@@ -84,16 +84,35 @@ func sair_da_tela() -> void:
 
 
 func _on_body_entered(body):
+	
 	# Se colidir com o Paddle, rebate
-	if body.is_in_group("paddle"):
+	if body.is_in_group("diagonal_a"):
 		som_impacto_paddle.play()
-		nova_direcao.y *= -1	
+		if nova_direcao == Vector2(0, -1):
+			nova_direcao = Vector2(1, 0)
+		elif nova_direcao == Vector2(0, 1):	
+			nova_direcao = Vector2(-1, 0)
+		elif nova_direcao == Vector2(-1, 0):	
+			nova_direcao = Vector2(0, 1)
+		elif nova_direcao == Vector2(1, 0):	
+			nova_direcao = Vector2(0, -1)
+			
+	if body.is_in_group("diagonal_b"):
+		som_impacto_paddle.play()
+		if nova_direcao == Vector2(0, -1):
+			nova_direcao = Vector2(-1, 0)
+		elif nova_direcao == Vector2(0, 1):	
+			nova_direcao = Vector2(1, 0)
+		elif nova_direcao == Vector2(-1, 0):	
+			nova_direcao = Vector2(0, -1)
+		elif nova_direcao == Vector2(1, 0):	
+			nova_direcao = Vector2(0, 1)
 	
 	# Se colidir com o Bloco, desconta sua vida e rebate
-	elif body.is_in_group("blocos"):
+	if body.is_in_group("blocos"):
 		som_impacto_bloco.play()
 		body.receber_dano()
-		nova_direcao.y *= -1
+		nova_direcao *= -1
 
 
 func _on_timer_da_bola_timeout():
