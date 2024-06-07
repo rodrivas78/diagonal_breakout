@@ -8,12 +8,16 @@ size = Vector2(70, 20)
 
 [node name="Bloco" type="StaticBody2D" groups=["blocos"]]
 script = ExtResource("1_o2hi6")
+vida_do_bloco = 1
 vermelho = Color(1, 0, 0, 1)
 verde = Color(0, 1, 0, 1)
 azul = Color(0.239216, 0.462745, 1, 1)
 
 [node name="SpriteDoBloco" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1)
 texture = ExtResource("1_yq45q")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.5, 1)
 shape = SubResource("RectangleShape2D_r3j1a")
+one_way_collision_margin = 0.0

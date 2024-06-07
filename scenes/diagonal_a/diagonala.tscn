@@ -2,9 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://bibd1jq8jmy0v" path="res://assets/sprites/diagonal_3b.png" id="1_iyflx"]
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_vw825"]
-a = Vector2(48, -58)
-b = Vector2(-39, 30)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l57d7"]
+height = 117.069
 
 [node name="DiagonalA" type="StaticBody2D"]
 
@@ -13,5 +12,7 @@ position = Vector2(-1, 1)
 texture = ExtResource("1_iyflx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, 14)
-shape = SubResource("SegmentShape2D_vw825")
+position = Vector2(-2, 1)
+rotation = 0.755728
+skew = 0.0244346
+shape = SubResource("CapsuleShape2D_l57d7")
