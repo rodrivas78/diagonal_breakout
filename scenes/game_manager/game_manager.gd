@@ -81,8 +81,13 @@ func atualizar_contagem_dos_blocos() -> void:
 	blocos_na_fase -= 1
 	print_debug(blocos_na_fase)
 	if blocos_na_fase <= 0:
+		
 		timer_do_passar_de_fase.start()
 
+#func pause_game_for_seconds(seconds):
+#	get_tree().paused = true
+#	await(get_tree().create_timer(seconds))
+#	get_tree().paused = false
 
 func _on_timer_do_passar_de_fase_timeout():
 	# Carrega a próxima fase
