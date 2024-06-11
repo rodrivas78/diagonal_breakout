@@ -15,6 +15,7 @@ position = Vector2(400, 300)
 texture = ExtResource("1_y5hhp")
 
 [node name="Paddle" parent="." instance=ExtResource("2_0h4wr")]
+visible = false
 position = Vector2(400, 550)
 
 [node name="Bola" parent="." instance=ExtResource("3_jy2ga")]
@@ -23,7 +24,8 @@ position = Vector2(400, 500)
 [node name="Blocos" type="Node2D" parent="."]
 
 [node name="Bloco" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_i8ss1")]
-position = Vector2(401, 319)
+position = Vector2(713, 308)
+rotation = -1.5708
 game_manager = NodePath("../../GameManager")
 
 [node name="GameManager" parent="." node_paths=PackedStringArray("blocos", "diagonalA", "diagonalB") instance=ExtResource("5_rjyp1")]
@@ -32,9 +34,9 @@ proxima_fase = "res://scenes/fases/fase_02/fase_02.tscn"
 diagonalA = NodePath("../DiagonalA")
 diagonalB = NodePath("../DiagonalB")
 
-[node name="DiagonalA" parent="." instance=ExtResource("6_q67g7")]
+[node name="DiagonalA" parent="." groups=["diagonal_a"] instance=ExtResource("6_q67g7")]
 visible = false
 position = Vector2(408, 144)
 
-[node name="DiagonalB" parent="." instance=ExtResource("7_jt1tc")]
+[node name="DiagonalB" parent="." groups=["diagonal_b"] instance=ExtResource("7_jt1tc")]
 position = Vector2(408, 144)

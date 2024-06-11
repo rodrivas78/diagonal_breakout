@@ -6,6 +6,7 @@ extends Area2D
 @onready var som_impacto_bloco : AudioStreamPlayer = $SomImpactoBloco
 @onready var som_impacto_paddle : AudioStreamPlayer = $SomImpactoPaddle
 @onready var som_impacto_tela : AudioStreamPlayer = $SomImpactoTela
+@onready var som_bola_off : AudioStreamPlayer = $SomBolaOff
 
 # Movimento da Bola
 var velocidade_da_bola : float = 400.0
@@ -72,6 +73,7 @@ func verificar_posicao_da_bola() -> void:
 	
 	# Se a Bola cair da tela
 	if position.y > y_maximo and not caiu_da_tela:
+		som_bola_off.play()
 		timer_da_bola.start()
 		caiu_da_tela = true
 
