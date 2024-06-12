@@ -1,5 +1,7 @@
 extends Area2D
 
+#@export var verdePeq2 : Node2D
+#@export var amareloPeq : Node2D
 
 # Referências Gerais
 @onready var timer_da_bola : Timer = $TimerDaBola
@@ -8,6 +10,12 @@ extends Area2D
 @onready var som_impacto_tela : AudioStreamPlayer = $SomImpactoTela
 @onready var som_bola_off : AudioStreamPlayer = $SomBolaOff
 
+@onready var current_scene_name = get_tree().current_scene.name
+
+@onready var barra_verde = get_node("/root/Fase01/greenBar")
+@onready var barra_amarela = get_node("/root/Fase01/yellowBar")
+@onready var barra_vermelha = get_node("/root/Fase01/redBar")
+@onready var game_manager = get_node("/root/"+current_scene_name+"/GameManager")
 # Movimento da Bola
 var velocidade_da_bola : float = 400.0
 var posicao_inicial : Vector2 = Vector2(403, 500)
@@ -18,17 +26,18 @@ var nova_direcao : Vector2 = Vector2(0, 0)
 var x_minimo : float = 0
 var x_maximo : float = 800
 var y_minimo : float = 0
-var y_maximo : float = 600
+var y_maximo : float = 550
 
 # Verificações
 var primeiro_lancamento : bool = true
 var caiu_da_tela : bool = false
+var impact_count = 0
+var max_impacts = 2
 
 
 func _ready():
 	timer_da_bola.one_shot = true
 	resetar_bola()
-
 
 func _process(delta):
 	# Se for o primeiro lançamento, esperar a ação do Jogador para lançar
@@ -49,7 +58,6 @@ func resetar_bola() -> void:
 func escolher_direcao_inicial() -> void:
 	# Escolhe uma nova direção Horizontal
 	#var x_aleatorio = [-1, 1].pick_random()
-	
 	# Aplica a nova direção
 	direcao_inicial = Vector2(0, -1)
 	nova_direcao = direcao_inicial
@@ -61,21 +69,34 @@ func movimentar_bola(delta : float) -> void:
 	
 
 func verificar_posicao_da_bola() -> void:
+	#var my_sprite = get_node(VerdePeq)
 	# Se a Bola estiver dentro da tela, a rebate ao colidir com as bordas
 	if position.y <= y_maximo:
 		if position.y <= y_minimo:
 			som_impacto_tela.play()
 			nova_direcao.y *= -1
+			impact_count += 1
+			print_debug("impact count: ", impact_count)
 		
 		if position.x <= x_minimo or position.x >= x_maximo:
 			som_impacto_tela.play()
 			nova_direcao.x *= -1
+			impact_count += 1
+			print_debug("impact count: ", impact_count)
+			
+		if impact_count > max_impacts:
+			caiu_da_tela = true
+			game_manager.perde_uma_vida()
+			# Reset the impact count
+			impact_count = 0
 	
 	# Se a Bola cair da tela
 	if position.y > y_maximo and not caiu_da_tela:
 		som_bola_off.play()
 		timer_da_bola.start()
 		caiu_da_tela = true
+		game_manager.perde_uma_vida()
+		impact_count = 0
 
 
 func sair_da_tela() -> void:
@@ -83,10 +104,10 @@ func sair_da_tela() -> void:
 	nova_direcao = Vector2(0, 0)
 	primeiro_lancamento = true
 	resetar_bola()
+	impact_count = 0
 
 
 func _on_body_entered(body):
-	
 	# Se colidir com o Paddle, rebate
 	if body.is_in_group("diagonal_a"):
 		som_impacto_paddle.play()

@@ -6,6 +6,8 @@ extends Node2D
 @export var blocos : Node2D
 var blocos_na_fase : int = 0
 
+var vidas : int = 2
+
 # Passar de Fase
 @export_group("Passar de Fase")
 @export var proxima_fase : String
@@ -15,6 +17,7 @@ var blocos_na_fase : int = 0
 @export_group("Controle dos Bumpers")
 @export var diagonalA : Node2D
 @export var diagonalB : Node2D
+@export var verdePeq : Node2D
 var iX : int = 1
 var iY : int = 1 
 @export var yPosition = [184, 298, 412]
@@ -75,11 +78,10 @@ func buscar_blocos() -> void:
 	for bloco in blocos.get_children():
 		blocos_na_fase += 1
 
-
 func atualizar_contagem_dos_blocos() -> void:
 	# Remove um Bloco da contagem e, SE não tiver mais nenhum, inicia o passar de fase
 	blocos_na_fase -= 1
-	print_debug(blocos_na_fase)
+	#print_debug(blocos_na_fase)
 	if blocos_na_fase <= 0:
 		
 		timer_do_passar_de_fase.start()
@@ -101,4 +103,10 @@ func ativa_ou_desativa_paddles() -> void:
 		diagonalA.process_mode = Node.PROCESS_MODE_DISABLED
 		diagonalB.process_mode = Node.PROCESS_MODE_ALWAYS
 
-		
+func perde_uma_vida() -> void:
+	print_debug("vidas ",vidas)
+	vidas -= 1
+	#get_tree().reload_current_scene()
+	if vidas == 0:
+		print_debug("GAME OVER")
+		get_tree().reload_current_scene()	
