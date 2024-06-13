@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cu3p3i2gvatsj"]
+[gd_scene load_steps=14 format=3 uid="uid://cu3p3i2gvatsj"]
 
 [ext_resource type="Texture2D" uid="uid://dys5vk31jy6rx" path="res://assets/sprites/campo-roxo_hud_6.png" id="1_ylbj1"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_0h4wr"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://blflk32ha2p8f" path="res://assets/sprites/vermelho_peq.png" id="10_5n6q7"]
 [ext_resource type="Texture2D" uid="uid://b5s460jsntqbb" path="res://assets/sprites/divisoria.png" id="11_j0ko7"]
 [ext_resource type="Texture2D" uid="uid://0mrcfbe3ti82" path="res://assets/sprites/bola4.png" id="12_ossu6"]
+[ext_resource type="PackedScene" uid="uid://d4eem45rje27h" path="res://scenes/life_manager/life_manager.tscn" id="13_f6fxi"]
 
 [node name="Fase01" type="Node2D"]
 
@@ -67,6 +68,10 @@ texture = ExtResource("10_5n6q7")
 position = Vector2(926, 137)
 texture = ExtResource("11_j0ko7")
 
+[node name="Divisoria2" type="Sprite2D" parent="."]
+position = Vector2(926, 257)
+texture = ExtResource("11_j0ko7")
+
 [node name="Bola4" type="Sprite2D" parent="."]
 position = Vector2(955, 74)
 texture = ExtResource("12_ossu6")
@@ -74,3 +79,5 @@ texture = ExtResource("12_ossu6")
 [node name="Bola5" type="Sprite2D" parent="."]
 position = Vector2(897, 74)
 texture = ExtResource("12_ossu6")
+
+[node name="LifeManager" parent="." instance=ExtResource("13_f6fxi")]

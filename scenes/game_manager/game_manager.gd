@@ -6,7 +6,7 @@ extends Node2D
 @export var blocos : Node2D
 var blocos_na_fase : int = 0
 
-var vidas : int = 2
+#var vidas : int = 2
 
 # Passar de Fase
 @export_group("Passar de Fase")
@@ -103,10 +103,10 @@ func ativa_ou_desativa_paddles() -> void:
 		diagonalA.process_mode = Node.PROCESS_MODE_DISABLED
 		diagonalB.process_mode = Node.PROCESS_MODE_ALWAYS
 
-func perde_uma_vida() -> void:
-	print_debug("vidas ",vidas)
-	vidas -= 1
-	#get_tree().reload_current_scene()
-	if vidas == 0:
-		print_debug("GAME OVER")
-		get_tree().reload_current_scene()	
+#func perde_uma_vida() -> void:
+#	vidas -= 1
+#	print_debug("vidas ",vidas)
+#	get_tree().reload_current_scene()
+#	if vidas <= 0:
+#		print_debug("GAME OVER")
+#		get_tree().reload_current_scene()	

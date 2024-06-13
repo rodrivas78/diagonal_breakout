@@ -12,10 +12,10 @@ extends Area2D
 
 @onready var current_scene_name = get_tree().current_scene.name
 
-@onready var barra_verde = get_node("/root/Fase01/greenBar")
-@onready var barra_amarela = get_node("/root/Fase01/yellowBar")
-@onready var barra_vermelha = get_node("/root/Fase01/redBar")
-@onready var game_manager = get_node("/root/"+current_scene_name+"/GameManager")
+@onready var barra_verde = get_node("/root/"+current_scene_name+"/greenBar")
+@onready var barra_amarela = get_node("/root/"+current_scene_name+"/yellowBar")
+@onready var barra_vermelha = get_node("/root/"+current_scene_name+"/redBar")
+@onready var life_manager = get_node("/root/"+current_scene_name+"/LifeManager")
 # Movimento da Bola
 var velocidade_da_bola : float = 400.0
 var posicao_inicial : Vector2 = Vector2(403, 500)
@@ -38,6 +38,7 @@ var max_impacts = 2
 func _ready():
 	timer_da_bola.one_shot = true
 	resetar_bola()
+	print_debug("vidas: ",life_manager.lives)
 
 func _process(delta):
 	# Se for o primeiro lançamento, esperar a ação do Jogador para lançar
@@ -69,35 +70,42 @@ func movimentar_bola(delta : float) -> void:
 	
 
 func verificar_posicao_da_bola() -> void:
-	#var my_sprite = get_node(VerdePeq)
 	# Se a Bola estiver dentro da tela, a rebate ao colidir com as bordas
 	if position.y <= y_maximo:
 		if position.y <= y_minimo:
 			som_impacto_tela.play()
 			nova_direcao.y *= -1
-			impact_count += 1
+			change_bar_on_impact()
 			print_debug("impact count: ", impact_count)
 		
 		if position.x <= x_minimo or position.x >= x_maximo:
 			som_impacto_tela.play()
 			nova_direcao.x *= -1
-			impact_count += 1
+			change_bar_on_impact()
 			print_debug("impact count: ", impact_count)
-			
-		if impact_count > max_impacts:
-			caiu_da_tela = true
-			game_manager.perde_uma_vida()
-			# Reset the impact count
-			impact_count = 0
 	
 	# Se a Bola cair da tela
 	if position.y > y_maximo and not caiu_da_tela:
+		life_manager.decrease_lives()
 		som_bola_off.play()
 		timer_da_bola.start()
 		caiu_da_tela = true
-		game_manager.perde_uma_vida()
 		impact_count = 0
-
+		
+func change_bar_on_impact() -> void:
+	impact_count += 1
+	match impact_count:
+		1: 
+			barra_verde.visible = false
+			barra_amarela.visible = true 		
+		2: 
+			barra_amarela.visible = false
+			barra_vermelha.visible = true
+		3:
+			barra_vermelha.visible = false
+			life_manager.decrease_lives()
+			impact_count = 0
+			sair_da_tela()
 
 func sair_da_tela() -> void:
 	# Para o movimento da Bola e reseta sua posição
@@ -105,6 +113,7 @@ func sair_da_tela() -> void:
 	primeiro_lancamento = true
 	resetar_bola()
 	impact_count = 0
+	barra_verde.visible = true
 
 
 func _on_body_entered(body):

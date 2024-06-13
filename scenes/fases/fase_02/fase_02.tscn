@@ -1,19 +1,24 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3tsnvbmjopsf"]
+[gd_scene load_steps=13 format=3 uid="uid://c3tsnvbmjopsf"]
 
-[ext_resource type="Texture2D" uid="uid://dkox74bf3csop" path="res://assets/sprites/campo-roxo.png" id="1_gg6ry"]
+[ext_resource type="Texture2D" uid="uid://dys5vk31jy6rx" path="res://assets/sprites/campo-roxo_hud_6.png" id="1_ja3vv"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_g83dj"]
 [ext_resource type="PackedScene" uid="uid://h17w5q1iroht" path="res://scenes/bola/bola.tscn" id="3_idfwl"]
 [ext_resource type="PackedScene" uid="uid://dh5rpeuhfoqpk" path="res://scenes/bloco/bloco.tscn" id="4_r74yg"]
 [ext_resource type="PackedScene" uid="uid://74yx6akk6vh3" path="res://scenes/game_manager/game_manager.tscn" id="5_h0ebo"]
 [ext_resource type="PackedScene" uid="uid://b7bqh3a1f3ev5" path="res://scenes/diagonal_b/diagonalb.tscn" id="8_crhme"]
 [ext_resource type="Texture2D" uid="uid://dkcutdlj3ve6y" path="res://assets/sprites/borda6.png" id="8_h7ux7"]
+[ext_resource type="Texture2D" uid="uid://cee1mlet1ngs5" path="res://assets/sprites/verde_peq.png" id="9_hfucq"]
 [ext_resource type="PackedScene" uid="uid://bgvhh54pyw0f3" path="res://scenes/diagonal_a/diagonala.tscn" id="9_rc3jw"]
+[ext_resource type="Texture2D" uid="uid://bfbhbuvj3i2t1" path="res://assets/sprites/amarelo_peq.png" id="10_stivu"]
+[ext_resource type="Texture2D" uid="uid://blflk32ha2p8f" path="res://assets/sprites/vermelho_peq.png" id="11_io5cs"]
+[ext_resource type="Texture2D" uid="uid://b5s460jsntqbb" path="res://assets/sprites/divisoria.png" id="12_gvryo"]
 
 [node name="Fase02" type="Node2D"]
 
 [node name="ImagemDeFundo" type="Sprite2D" parent="."]
-position = Vector2(402, 304)
-texture = ExtResource("1_gg6ry")
+position = Vector2(524.5, 304)
+scale = Vector2(0.999047, 1)
+texture = ExtResource("1_ja3vv")
 
 [node name="Paddle" parent="." instance=ExtResource("2_g83dj")]
 visible = false
@@ -87,7 +92,7 @@ position = Vector2(590, 502)
 game_manager = NodePath("../../GameManager")
 
 [node name="Bloco15" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
-position = Vector2(783, 183)
+position = Vector2(782, 184)
 rotation = 1.5708
 game_manager = NodePath("../../GameManager")
 
@@ -145,3 +150,28 @@ position = Vector2(401, 298)
 [node name="DiagonalB" parent="." groups=["diagonal_b"] instance=ExtResource("8_crhme")]
 visible = false
 position = Vector2(403, 298)
+
+[node name="greenBar" type="Sprite2D" parent="."]
+position = Vector2(923.5, 199.6)
+scale = Vector2(0.943966, 1)
+texture = ExtResource("9_hfucq")
+
+[node name="yellowBar" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(914, 200)
+scale = Vector2(0.862069, 1)
+texture = ExtResource("10_stivu")
+
+[node name="redBar" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(920.5, 200)
+scale = Vector2(0.918103, 1)
+texture = ExtResource("11_io5cs")
+
+[node name="Divisoria" type="Sprite2D" parent="."]
+position = Vector2(924, 137)
+texture = ExtResource("12_gvryo")
+
+[node name="Divisoria2" type="Sprite2D" parent="."]
+position = Vector2(924, 257)
+texture = ExtResource("12_gvryo")

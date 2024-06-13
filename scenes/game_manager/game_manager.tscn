@@ -6,6 +6,7 @@
 script = ExtResource("1_qhtyb")
 
 [node name="TimerDoPassarDeFase" type="Timer" parent="."]
+wait_time = 0.226
 one_shot = true
 
 [connection signal="timeout" from="TimerDoPassarDeFase" to="." method="_on_timer_do_passar_de_fase_timeout"]
