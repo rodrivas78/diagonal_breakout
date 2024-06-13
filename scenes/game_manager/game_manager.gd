@@ -6,7 +6,8 @@ extends Node2D
 @export var blocos : Node2D
 var blocos_na_fase : int = 0
 
-#var vidas : int = 2
+#@onready var current_scene_name = get_tree().current_scene.name
+#@onready var bola = get_node("/root/"+current_scene_name+"/Bola")
 
 # Passar de Fase
 @export_group("Passar de Fase")

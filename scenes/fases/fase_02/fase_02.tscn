@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c3tsnvbmjopsf"]
+[gd_scene load_steps=14 format=3 uid="uid://c3tsnvbmjopsf"]
 
 [ext_resource type="Texture2D" uid="uid://dys5vk31jy6rx" path="res://assets/sprites/campo-roxo_hud_6.png" id="1_ja3vv"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_g83dj"]
@@ -12,11 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://bfbhbuvj3i2t1" path="res://assets/sprites/amarelo_peq.png" id="10_stivu"]
 [ext_resource type="Texture2D" uid="uid://blflk32ha2p8f" path="res://assets/sprites/vermelho_peq.png" id="11_io5cs"]
 [ext_resource type="Texture2D" uid="uid://b5s460jsntqbb" path="res://assets/sprites/divisoria.png" id="12_gvryo"]
+[ext_resource type="PackedScene" uid="uid://d4eem45rje27h" path="res://scenes/life_manager/life_manager.tscn" id="13_bxlyi"]
 
 [node name="Fase02" type="Node2D"]
 
 [node name="ImagemDeFundo" type="Sprite2D" parent="."]
-position = Vector2(524.5, 304)
+position = Vector2(524.5, 301)
 scale = Vector2(0.999047, 1)
 texture = ExtResource("1_ja3vv")
 
@@ -152,19 +153,19 @@ visible = false
 position = Vector2(403, 298)
 
 [node name="greenBar" type="Sprite2D" parent="."]
-position = Vector2(923.5, 199.6)
+position = Vector2(923.5, 196.6)
 scale = Vector2(0.943966, 1)
 texture = ExtResource("9_hfucq")
 
 [node name="yellowBar" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(914, 200)
+position = Vector2(914, 197)
 scale = Vector2(0.862069, 1)
 texture = ExtResource("10_stivu")
 
 [node name="redBar" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(920.5, 200)
+position = Vector2(920.5, 197)
 scale = Vector2(0.918103, 1)
 texture = ExtResource("11_io5cs")
 
@@ -175,3 +176,5 @@ texture = ExtResource("12_gvryo")
 [node name="Divisoria2" type="Sprite2D" parent="."]
 position = Vector2(924, 257)
 texture = ExtResource("12_gvryo")
+
+[node name="LifeManager" parent="." instance=ExtResource("13_bxlyi")]

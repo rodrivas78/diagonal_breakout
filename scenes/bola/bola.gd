@@ -38,6 +38,7 @@ var max_impacts = 2
 func _ready():
 	timer_da_bola.one_shot = true
 	resetar_bola()
+	#life_manager.load_state()
 	print_debug("vidas: ",life_manager.lives)
 
 func _process(delta):
@@ -87,6 +88,7 @@ func verificar_posicao_da_bola() -> void:
 	# Se a Bola cair da tela
 	if position.y > y_maximo and not caiu_da_tela:
 		life_manager.decrease_lives()
+		#life_manager.save_state()
 		som_bola_off.play()
 		timer_da_bola.start()
 		caiu_da_tela = true
@@ -104,8 +106,13 @@ func change_bar_on_impact() -> void:
 		3:
 			barra_vermelha.visible = false
 			life_manager.decrease_lives()
+			#life_manager.save_state()
 			impact_count = 0
 			sair_da_tela()
+		#_: 
+		#	barra_verde.visible = true	
+		#	barra_vermelha.visible = false
+		#	barra_amarela.visible = false
 
 func sair_da_tela() -> void:
 	# Para o movimento da Bola e reseta sua posição
@@ -114,6 +121,8 @@ func sair_da_tela() -> void:
 	resetar_bola()
 	impact_count = 0
 	barra_verde.visible = true
+	barra_vermelha.visible = false
+	barra_amarela.visible = false
 
 
 func _on_body_entered(body):
