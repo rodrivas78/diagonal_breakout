@@ -109,10 +109,7 @@ func change_bar_on_impact() -> void:
 			#life_manager.save_state()
 			impact_count = 0
 			sair_da_tela()
-		#_: 
-		#	barra_verde.visible = true	
-		#	barra_vermelha.visible = false
-		#	barra_amarela.visible = false
+	
 
 func sair_da_tela() -> void:
 	# Para o movimento da Bola e reseta sua posição
