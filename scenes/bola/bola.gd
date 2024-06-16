@@ -39,7 +39,9 @@ func _ready():
 	timer_da_bola.one_shot = true
 	resetar_bola()
 	#life_manager.load_state()
-	print_debug("vidas: ",life_manager.lives)
+	#print_debug("vidas: ",life_manager.lives)
+	print_debug("vidas: ",GlobalData.lives)
+	
 
 func _process(delta):
 	# Se for o primeiro lançamento, esperar a ação do Jogador para lançar
@@ -87,8 +89,10 @@ func verificar_posicao_da_bola() -> void:
 	
 	# Se a Bola cair da tela
 	if position.y > y_maximo and not caiu_da_tela:
-		life_manager.decrease_lives()
+		#life_manager.decrease_lives()
 		#life_manager.save_state()
+		#GlobalData.player_lives -= 1
+		GlobalData.decrease_lives()
 		som_bola_off.play()
 		timer_da_bola.start()
 		caiu_da_tela = true
@@ -105,8 +109,9 @@ func change_bar_on_impact() -> void:
 			barra_vermelha.visible = true
 		3:
 			barra_vermelha.visible = false
-			life_manager.decrease_lives()
+			#life_manager.decrease_lives()
 			#life_manager.save_state()
+			GlobalData.player_lives -= 1
 			impact_count = 0
 			sair_da_tela()
 	
