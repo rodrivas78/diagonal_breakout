@@ -17,6 +17,12 @@ func decrease_lives():
 		bola_monitor.visible = false
 	elif lives <= 0:
 		game_over()
+		
+func update_lives_monitor():
+	if lives == 2:
+		bola_monitor2.visible = false
+	elif lives == 1:
+		bola_monitor.visible = false		
 
 func reset_lives():
 	lives = 3

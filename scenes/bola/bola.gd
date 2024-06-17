@@ -15,7 +15,9 @@ extends Area2D
 @onready var barra_verde = get_node("/root/"+current_scene_name+"/greenBar")
 @onready var barra_amarela = get_node("/root/"+current_scene_name+"/yellowBar")
 @onready var barra_vermelha = get_node("/root/"+current_scene_name+"/redBar")
-@onready var life_manager = get_node("/root/"+current_scene_name+"/LifeManager")
+@onready var bola_monitor = get_node("/root/"+current_scene_name+"/BolaMonitor")
+@onready var bola_monitor2 = get_node("/root/"+current_scene_name+"/BolaMonitor2")
+@onready var game_over = get_node("/root/"+current_scene_name+"/GameOver")
 # Movimento da Bola
 var velocidade_da_bola : float = 400.0
 var posicao_inicial : Vector2 = Vector2(403, 500)
@@ -38,9 +40,8 @@ var max_impacts = 2
 func _ready():
 	timer_da_bola.one_shot = true
 	resetar_bola()
-	#life_manager.load_state()
-	#print_debug("vidas: ",life_manager.lives)
-	print_debug("vidas: ",GlobalData.lives)
+	update_lives_monitor()
+	print_debug("vidas: ", GlobalData.lives)
 	
 
 func _process(delta):
@@ -89,10 +90,8 @@ func verificar_posicao_da_bola() -> void:
 	
 	# Se a Bola cair da tela
 	if position.y > y_maximo and not caiu_da_tela:
-		#life_manager.decrease_lives()
-		#life_manager.save_state()
-		#GlobalData.player_lives -= 1
 		GlobalData.decrease_lives()
+		update_lives_monitor()
 		som_bola_off.play()
 		timer_da_bola.start()
 		caiu_da_tela = true
@@ -109,9 +108,8 @@ func change_bar_on_impact() -> void:
 			barra_vermelha.visible = true
 		3:
 			barra_vermelha.visible = false
-			#life_manager.decrease_lives()
-			#life_manager.save_state()
-			GlobalData.player_lives -= 1
+			GlobalData.decrease_lives()
+			update_lives_monitor()
 			impact_count = 0
 			sair_da_tela()
 	
@@ -161,3 +159,21 @@ func _on_body_entered(body):
 func _on_timer_da_bola_timeout():
 	sair_da_tela()
 	caiu_da_tela = false	
+
+func update_lives_monitor():
+	print_debug("vidas: ", GlobalData.lives)
+	match GlobalData.lives:
+		2:
+			bola_monitor2.visible = false
+		1:
+			bola_monitor2.visible = false
+			bola_monitor.visible = false
+		0:
+			gameOver()
+
+func gameOver():
+	# Exibir a tela de game over ou realizar outra ação
+	print("Game Over!")
+	game_over.visible = true
+	get_tree().paused = true
+	#get_tree().quit()		

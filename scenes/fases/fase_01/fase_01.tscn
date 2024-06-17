@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cu3p3i2gvatsj"]
+[gd_scene load_steps=19 format=3 uid="uid://cu3p3i2gvatsj"]
 
 [ext_resource type="Texture2D" uid="uid://bgg12yqad5t7l" path="res://assets/sprites/campo-roxo_hud9_2.png" id="1_awebk"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_0h4wr"]
@@ -11,7 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://bfbhbuvj3i2t1" path="res://assets/sprites/amarelo_peq.png" id="9_ewtyb"]
 [ext_resource type="Texture2D" uid="uid://blflk32ha2p8f" path="res://assets/sprites/vermelho_peq.png" id="10_5n6q7"]
 [ext_resource type="Texture2D" uid="uid://0mrcfbe3ti82" path="res://assets/sprites/bola4.png" id="12_ossu6"]
-[ext_resource type="PackedScene" uid="uid://d4eem45rje27h" path="res://scenes/life_manager/life_manager.tscn" id="13_f6fxi"]
 [ext_resource type="Texture2D" uid="uid://c760mmtuwjni0" path="res://assets/sprites/bola_monitor.png" id="14_uxqjj"]
 [ext_resource type="Texture2D" uid="uid://d3wi6lsykfnd3" path="res://assets/sprites/vidro_sup2.png" id="15_3wvo3"]
 [ext_resource type="Texture2D" uid="uid://bye5t740e7ltf" path="res://assets/sprites/perfect.png" id="16_l2fyy"]
@@ -45,6 +44,10 @@ blocos = NodePath("../Blocos")
 proxima_fase = "res://scenes/fases/fase_02/fase_02.tscn"
 diagonalA = NodePath("../DiagonalA")
 diagonalB = NodePath("../DiagonalB")
+
+[node name="Timer" type="Timer" parent="GameManager"]
+wait_time = 1.703
+one_shot = true
 
 [node name="DiagonalA" parent="." groups=["diagonal_a"] instance=ExtResource("6_q67g7")]
 visible = false
@@ -80,14 +83,12 @@ visible = false
 position = Vector2(897, 74)
 texture = ExtResource("12_ossu6")
 
-[node name="LifeManager" parent="." instance=ExtResource("13_f6fxi")]
-
 [node name="BolaMonitor" type="Sprite2D" parent="."]
-position = Vector2(888, 69)
+position = Vector2(890, 69)
 texture = ExtResource("14_uxqjj")
 
 [node name="BolaMonitor2" type="Sprite2D" parent="."]
-position = Vector2(961, 70)
+position = Vector2(963, 69)
 texture = ExtResource("14_uxqjj")
 
 [node name="VidroSup2" type="Sprite2D" parent="."]
@@ -96,11 +97,11 @@ scale = Vector2(0.855856, 0.696721)
 texture = ExtResource("15_3wvo3")
 
 [node name="Perfect" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(924, 424)
 texture = ExtResource("16_l2fyy")
 
-[node name="Stage1" type="Sprite2D" parent="."]
-visible = false
+[node name="Stage01" type="Sprite2D" parent="."]
 position = Vector2(924, 425)
 texture = ExtResource("17_7xebw")
 

@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://h17w5q1iroht"]
+
+[ext_resource type="Script" path="res://scenes/bola/bola.gd" id="1_u2cjm"]
+[ext_resource type="Texture2D" uid="uid://0mrcfbe3ti82" path="res://assets/sprites/bola4.png" id="2_5p5yg"]
+[ext_resource type="AudioStream" uid="uid://dovch8gtlayl4" path="res://assets/sons/impacto-tela.wav" id="3_elnhy"]
+[ext_resource type="AudioStream" uid="uid://c1kd78jfb8kyx" path="res://assets/sons/impacto-paddle.wav" id="4_65ahy"]
+[ext_resource type="AudioStream" uid="uid://dilsfk5h5y838" path="res://assets/sons/impacto-tela2.wav" id="5_tdv2d"]
+[ext_resource type="AudioStream" uid="uid://dcya0n4clwx1p" path="res://assets/sons/bola-off.wav" id="6_8wl2v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_krm4m"]
+
+[node name="Bola" type="Area2D"]
+script = ExtResource("1_u2cjm")
+
+[node name="SpriteDaBola" type="Sprite2D" parent="."]
+texture = ExtResource("2_5p5yg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_krm4m")
+
+[node name="TimerDaBola" type="Timer" parent="."]
+one_shot = true
+
+[node name="SomImpactoBloco" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_elnhy")
+
+[node name="SomImpactoPaddle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_65ahy")
+
+[node name="SomImpactoTela" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_tdv2d")
+
+[node name="SomBolaOff" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_8wl2v")
+volume_db = -19.014
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="TimerDaBola" to="." method="_on_timer_da_bola_timeout"]

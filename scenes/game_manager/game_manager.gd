@@ -6,13 +6,12 @@ extends Node2D
 @export var blocos : Node2D
 var blocos_na_fase : int = 0
 
-#@onready var current_scene_name = get_tree().current_scene.name
-#@onready var bola = get_node("/root/"+current_scene_name+"/Bola")
-
 # Passar de Fase
 @export_group("Passar de Fase")
 @export var proxima_fase : String
 @onready var timer_do_passar_de_fase : Timer = $TimerDoPassarDeFase
+
+@onready var current_scene_name = get_tree().current_scene.name
 
 #Controle dos bumpers
 @export_group("Controle dos Bumpers")
@@ -26,9 +25,14 @@ var iY : int = 1
 @export var jump_positions = Vector2i(xPosition[iX], yPosition[iY])
 var current_jump_index = 0
 
+var stage_node
+var timer_node
+
 
 func _ready():
 	buscar_blocos()
+	manage_show_stage_number_timer()
+	show_stage_number_sprite()
 
 
 func _process(delta):
@@ -53,6 +57,8 @@ func receber_inputs() -> void:
 		diagonalA.visible = !diagonalA.visible 
 		diagonalB.visible = !diagonalB.visible 
 		ativa_ou_desativa_paddles()
+		if get_tree().paused:
+			get_tree().paused = false
 		
 	# movimenta os paddles
 	if Input.is_action_just_pressed("mv-esquerdo"):
@@ -71,8 +77,6 @@ func receber_inputs() -> void:
 		if iY > 0:
 			iY -= 1	
 						
-	#TODO - Definir a posição inicial dos paddles
-	#TODO - e movimentos para cima e para baixo. 
 	
 func buscar_blocos() -> void:
 	# Conta quantos Blocos há na fase
@@ -82,9 +86,7 @@ func buscar_blocos() -> void:
 func atualizar_contagem_dos_blocos() -> void:
 	# Remove um Bloco da contagem e, SE não tiver mais nenhum, inicia o passar de fase
 	blocos_na_fase -= 1
-	#print_debug(blocos_na_fase)
-	if blocos_na_fase <= 0:
-		
+	if blocos_na_fase <= 0:	
 		timer_do_passar_de_fase.start()
 
 #func pause_game_for_seconds(seconds):
@@ -104,10 +106,19 @@ func ativa_ou_desativa_paddles() -> void:
 		diagonalA.process_mode = Node.PROCESS_MODE_DISABLED
 		diagonalB.process_mode = Node.PROCESS_MODE_ALWAYS
 
-#func perde_uma_vida() -> void:
-#	vidas -= 1
-#	print_debug("vidas ",vidas)
-#	get_tree().reload_current_scene()
-#	if vidas <= 0:
-#		print_debug("GAME OVER")
-#		get_tree().reload_current_scene()	
+func manage_show_stage_number_timer():
+	timer_node = get_node("/root/"+current_scene_name+"/GameManager/Timer")
+	timer_node.connect("timeout", _on_timer_timeout)
+	
+func show_stage_number_sprite():
+	var scene_name = get_tree().current_scene.name
+	var scene_number_str = scene_name.trim_prefix("Fase")
+	stage_node = get_node("/root/" + scene_name + "/Stage" + scene_number_str)
+	stage_node.visible = true
+	# Inicia um temporizador de 3 segundos
+	timer_node.start(3.0)
+
+func _on_timer_timeout():
+	print_debug("entrou no temporizador: ")
+	stage_node.visible = false
+
