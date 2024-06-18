@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cu3p3i2gvatsj"]
+[gd_scene load_steps=20 format=3 uid="uid://cu3p3i2gvatsj"]
 
 [ext_resource type="Texture2D" uid="uid://bgg12yqad5t7l" path="res://assets/sprites/campo-roxo_hud9_2.png" id="1_awebk"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_0h4wr"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bye5t740e7ltf" path="res://assets/sprites/perfect.png" id="16_l2fyy"]
 [ext_resource type="Texture2D" uid="uid://dwwlr3jagovu" path="res://assets/sprites/stage1.png" id="17_7xebw"]
 [ext_resource type="Texture2D" uid="uid://dsymdiqnkvwad" path="res://assets/sprites/vidro_inf2.png" id="18_f7n02"]
+[ext_resource type="Script" path="res://scenes/fases/fase_01/Score.gd" id="19_my6o5"]
 [ext_resource type="Texture2D" uid="uid://bly0m7ng2i40v" path="res://assets/sprites/watch_out.png" id="19_s02pd"]
 [ext_resource type="Texture2D" uid="uid://dgacodi0gxfqn" path="res://assets/sprites/game_over.png" id="20_uy0ij"]
 
@@ -35,8 +36,25 @@ position = Vector2(258, 463)
 [node name="Blocos" type="Node2D" parent="."]
 
 [node name="Bloco" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_i8ss1")]
-position = Vector2(634, 324)
+position = Vector2(761, 284)
 rotation = -1.5708
+game_manager = NodePath("../../GameManager")
+
+[node name="Bloco2" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_i8ss1")]
+position = Vector2(24, 301)
+rotation = -1.5708
+game_manager = NodePath("../../GameManager")
+
+[node name="Bloco3" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_i8ss1")]
+position = Vector2(218, 21)
+game_manager = NodePath("../../GameManager")
+
+[node name="Bloco4" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_i8ss1")]
+position = Vector2(399, 23)
+game_manager = NodePath("../../GameManager")
+
+[node name="Bloco5" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_i8ss1")]
+position = Vector2(584, 22)
 game_manager = NodePath("../../GameManager")
 
 [node name="GameManager" parent="." node_paths=PackedStringArray("blocos", "diagonalA", "diagonalB") instance=ExtResource("5_rjyp1")]
@@ -119,3 +137,15 @@ texture = ExtResource("19_s02pd")
 visible = false
 position = Vector2(926, 432)
 texture = ExtResource("20_uy0ij")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("19_my6o5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 918.0
+offset_top = 303.0
+offset_right = 1028.0
+offset_bottom = 356.0
+bbcode_enabled = true
+text = "00"
+metadata/_edit_use_anchors_ = true

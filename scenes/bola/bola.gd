@@ -41,7 +41,7 @@ func _ready():
 	timer_da_bola.one_shot = true
 	resetar_bola()
 	update_lives_monitor()
-	print_debug("vidas: ", GlobalData.lives)
+	#ScoreManager.startScore()
 	
 
 func _process(delta):
@@ -80,13 +80,11 @@ func verificar_posicao_da_bola() -> void:
 			som_impacto_tela.play()
 			nova_direcao.y *= -1
 			change_bar_on_impact()
-			print_debug("impact count: ", impact_count)
 		
 		if position.x <= x_minimo or position.x >= x_maximo:
 			som_impacto_tela.play()
 			nova_direcao.x *= -1
 			change_bar_on_impact()
-			print_debug("impact count: ", impact_count)
 	
 	# Se a Bola cair da tela
 	if position.y > y_maximo and not caiu_da_tela:
@@ -152,6 +150,7 @@ func _on_body_entered(body):
 	# Se colidir com o Bloco, desconta sua vida e rebate
 	if body.is_in_group("blocos"):
 		som_impacto_bloco.play()
+		ScoreManager.increase_player_score(10)
 		body.receber_dano()
 		nova_direcao *= -1
 
@@ -161,7 +160,7 @@ func _on_timer_da_bola_timeout():
 	caiu_da_tela = false	
 
 func update_lives_monitor():
-	print_debug("vidas: ", GlobalData.lives)
+	#print_debug("vidas: ", GlobalData.lives)
 	match GlobalData.lives:
 		2:
 			bola_monitor2.visible = false
@@ -173,7 +172,6 @@ func update_lives_monitor():
 
 func gameOver():
 	# Exibir a tela de game over ou realizar outra ação
-	print("Game Over!")
 	game_over.visible = true
 	get_tree().paused = true
 	#get_tree().quit()		

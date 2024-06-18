@@ -12,6 +12,7 @@ var blocos_na_fase : int = 0
 @onready var timer_do_passar_de_fase : Timer = $TimerDoPassarDeFase
 
 @onready var current_scene_name = get_tree().current_scene.name
+@onready var score_label = get_node("/root/"+current_scene_name+"/CanvasLayer")
 
 #Controle dos bumpers
 @export_group("Controle dos Bumpers")
@@ -31,9 +32,10 @@ var timer_node
 
 func _ready():
 	buscar_blocos()
+	ativa_ou_desativa_paddles()
 	manage_show_stage_number_timer()
 	show_stage_number_sprite()
-
+	
 
 func _process(delta):
 	receber_inputs()
@@ -80,19 +82,19 @@ func receber_inputs() -> void:
 	
 func buscar_blocos() -> void:
 	# Conta quantos Blocos há na fase
+	#score_label.startScore()
 	for bloco in blocos.get_children():
+		#print_debug("blocos_na_fase: ",blocos_na_fase)
 		blocos_na_fase += 1
 
 func atualizar_contagem_dos_blocos() -> void:
 	# Remove um Bloco da contagem e, SE não tiver mais nenhum, inicia o passar de fase
 	blocos_na_fase -= 1
+	print_debug("blocos_na_fase: ",blocos_na_fase)
+	
 	if blocos_na_fase <= 0:	
 		timer_do_passar_de_fase.start()
 
-#func pause_game_for_seconds(seconds):
-#	get_tree().paused = true
-#	await(get_tree().create_timer(seconds))
-#	get_tree().paused = false
 
 func _on_timer_do_passar_de_fase_timeout():
 	# Carrega a próxima fase
