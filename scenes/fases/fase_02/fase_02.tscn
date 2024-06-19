@@ -221,9 +221,9 @@ texture = ExtResource("19_dqyuf")
 script = ExtResource("19_ooxmd")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 919.0
+offset_left = 908.0
 offset_top = 306.0
-offset_right = 1029.0
+offset_right = 1018.0
 offset_bottom = 359.0
 bbcode_enabled = true
 text = "00"

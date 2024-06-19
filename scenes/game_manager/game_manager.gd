@@ -82,7 +82,6 @@ func receber_inputs() -> void:
 	
 func buscar_blocos() -> void:
 	# Conta quantos Blocos há na fase
-	#score_label.startScore()
 	for bloco in blocos.get_children():
 		#print_debug("blocos_na_fase: ",blocos_na_fase)
 		blocos_na_fase += 1
@@ -90,7 +89,6 @@ func buscar_blocos() -> void:
 func atualizar_contagem_dos_blocos() -> void:
 	# Remove um Bloco da contagem e, SE não tiver mais nenhum, inicia o passar de fase
 	blocos_na_fase -= 1
-	print_debug("blocos_na_fase: ",blocos_na_fase)
 	
 	if blocos_na_fase <= 0:	
 		timer_do_passar_de_fase.start()
