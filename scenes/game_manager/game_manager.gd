@@ -13,6 +13,11 @@ var blocos_na_fase : int = 0
 
 @onready var current_scene_name = get_tree().current_scene.name
 @onready var score_label = get_node("/root/"+current_scene_name+"/CanvasLayer")
+@onready var barra_verde = get_node("/root/"+current_scene_name+"/greenBar")
+@onready var barra_amarela = get_node("/root/"+current_scene_name+"/yellowBar")
+@onready var perfect = get_node("/root/"+current_scene_name+"/Perfect")
+@onready var watch_out = get_node("/root/"+current_scene_name+"/WatchOut")
+@onready var ball = get_node("/root/"+current_scene_name+"/Bola")
 
 #Controle dos bumpers
 @export_group("Controle dos Bumpers")
@@ -26,8 +31,11 @@ var iY : int = 1
 @export var jump_positions = Vector2i(xPosition[iX], yPosition[iY])
 var current_jump_index = 0
 
+@onready var point_sound : AudioStreamPlayer = $SomBonusPoints
+
 var stage_node
 var timer_node
+var score = 0
 
 
 func _ready():
@@ -89,11 +97,50 @@ func buscar_blocos() -> void:
 func atualizar_contagem_dos_blocos() -> void:
 	# Remove um Bloco da contagem e, SE não tiver mais nenhum, inicia o passar de fase
 	blocos_na_fase -= 1
-	
-	if blocos_na_fase <= 0:	
+	if blocos_na_fase <= 0 && barra_verde.visible:
+		#bonus Perfect!: Mostra Perfect / Bonus +50 / Conta os 50 para o placar
+		perfect.visible = true
+		ball.velocidade_da_bola = 0.0
+		await get_tree().create_timer(1.0).timeout
+		#TODO - Bonus 50 visible = true + await
+		add_50_points()
+	elif blocos_na_fase <= 0 && barra_amarela.visible:
+		#TODO - trocar por Nice / Bonus + 25 / método add_25_points()
+		watch_out.visible = true
+		ball.velocidade_da_bola = 0.0
+		await get_tree().create_timer(1.0).timeout
+		add_25_points()
+	elif blocos_na_fase <= 0:
+		ball.velocidade_da_bola = 0.0
+		#TODO - mostrar "No Bonus.." + await
 		timer_do_passar_de_fase.start()
 
-
+# Método para adicionar 50 pontos ao placar, incrementando 1 ponto por vez
+func add_50_points():
+	# Inicialize o contador em 0
+	score += 50
+	# Incrementar o placar em 1 ponto até atingir 50 pontos
+	for i in range(50):
+		ScoreManager.increase_player_score(1)
+		point_sound.play()
+		# Faça uma pausa de 0,1 segundos entre cada incremento
+		await get_tree().create_timer(0.03).timeout
+	if score >= 50:
+		timer_do_passar_de_fase.start()
+		
+func add_25_points():
+	# Inicialize o contador em 0
+	score += 25
+	# Incrementar o placar em 1 ponto até atingir 50 pontos
+	for i in range(25):
+		ScoreManager.increase_player_score(1)
+		point_sound.play()
+		# Faça uma pausa de 0,1 segundos entre cada incremento
+		await get_tree().create_timer(0.03).timeout
+	if score >= 25:
+		timer_do_passar_de_fase.start()
+		
+	
 func _on_timer_do_passar_de_fase_timeout():
 	# Carrega a próxima fase
 	get_tree().change_scene_to_file(proxima_fase)
@@ -119,6 +166,5 @@ func show_stage_number_sprite():
 	timer_node.start(3.0)
 
 func _on_timer_timeout():
-	print_debug("entrou no temporizador: ")
 	stage_node.visible = false
 

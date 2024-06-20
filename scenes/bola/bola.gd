@@ -1,7 +1,5 @@
 extends Area2D
 
-#@export var verdePeq2 : Node2D
-#@export var amareloPeq : Node2D
 
 # Referências Gerais
 @onready var timer_da_bola : Timer = $TimerDaBola
@@ -41,7 +39,6 @@ func _ready():
 	timer_da_bola.one_shot = true
 	resetar_bola()
 	update_lives_monitor()
-	#ScoreManager.startScore()
 	
 
 func _process(delta):
@@ -61,8 +58,6 @@ func resetar_bola() -> void:
 	
 
 func escolher_direcao_inicial() -> void:
-	# Escolhe uma nova direção Horizontal
-	#var x_aleatorio = [-1, 1].pick_random()
 	# Aplica a nova direção
 	direcao_inicial = Vector2(0, -1)
 	nova_direcao = direcao_inicial
@@ -100,7 +95,7 @@ func change_bar_on_impact() -> void:
 	match impact_count:
 		1: 
 			barra_verde.visible = false
-			barra_amarela.visible = true 		
+			barra_amarela.visible = true 
 		2: 
 			barra_amarela.visible = false
 			barra_vermelha.visible = true
