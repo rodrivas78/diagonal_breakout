@@ -159,12 +159,14 @@ func manage_show_stage_number_timer():
 	
 func show_stage_number_sprite():
 	var scene_name = get_tree().current_scene.name
-	var scene_number_str = scene_name.trim_prefix("Fase")
-	stage_node = get_node("/root/" + scene_name + "/Stage" + scene_number_str)
-	stage_node.visible = true
+	#TODO - desfazer
+	#var scene_number_str = scene_name.trim_prefix("Fase")
+	#stage_node = get_node("/root/" + scene_name + "/Stage" + scene_number_str)
+	#stage_node.visible = true
 	# Inicia um temporizador de 3 segundos
 	timer_node.start(3.0)
 
 func _on_timer_timeout():
-	stage_node.visible = false
+	print_debug()
+	#stage_node.visible = false
 

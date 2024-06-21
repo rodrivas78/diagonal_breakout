@@ -110,7 +110,7 @@ game_manager = NodePath("../../GameManager")
 
 [node name="GameManager" parent="." node_paths=PackedStringArray("blocos", "diagonalA", "diagonalB") instance=ExtResource("5_h0ebo")]
 blocos = NodePath("../Blocos")
-proxima_fase = "res://scenes/fases/fase_01/fase_01.tscn"
+proxima_fase = "res://scenes/fases/fase_03/fase_03.tscn"
 diagonalA = NodePath("../DiagonalA")
 diagonalB = NodePath("../DiagonalB")
 

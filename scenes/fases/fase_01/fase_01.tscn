@@ -36,7 +36,7 @@ position = Vector2(258, 463)
 [node name="Blocos" type="Node2D" parent="."]
 
 [node name="Bloco" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_i8ss1")]
-position = Vector2(761, 284)
+position = Vector2(761, 298)
 rotation = -1.5708
 game_manager = NodePath("../../GameManager")
 

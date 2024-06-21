@@ -20,11 +20,11 @@ func _ready():
 func atualizar_cor() -> void:
 	# Muda a cor do Bloco dependendo da sua quantidade de vida
 	if vida_do_bloco == 3:
-		modulate = verde
+		modulate = vermelho
 	elif vida_do_bloco == 2:
 		modulate = azul
 	elif vida_do_bloco == 1:
-		modulate = vermelho
+		modulate = verde
 	else:
 		modulate = Color.WHITE
 		

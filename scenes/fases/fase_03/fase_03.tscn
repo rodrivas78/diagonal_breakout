@@ -1,0 +1,176 @@
+[gd_scene load_steps=20 format=3 uid="uid://c3t3c8vdaxmx4"]
+
+[ext_resource type="Texture2D" uid="uid://bgg12yqad5t7l" path="res://assets/sprites/campo-roxo_hud9_2.png" id="1_unmb6"]
+[ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_7j6u5"]
+[ext_resource type="PackedScene" uid="uid://h17w5q1iroht" path="res://scenes/bola/bola.tscn" id="3_6wobo"]
+[ext_resource type="PackedScene" uid="uid://dh5rpeuhfoqpk" path="res://scenes/bloco/bloco.tscn" id="4_ld2u7"]
+[ext_resource type="PackedScene" uid="uid://74yx6akk6vh3" path="res://scenes/game_manager/game_manager.tscn" id="5_h0biq"]
+[ext_resource type="Texture2D" uid="uid://dkcutdlj3ve6y" path="res://assets/sprites/borda6.png" id="6_w3aee"]
+[ext_resource type="PackedScene" uid="uid://bgvhh54pyw0f3" path="res://scenes/diagonal_a/diagonala.tscn" id="7_kjebb"]
+[ext_resource type="PackedScene" uid="uid://b7bqh3a1f3ev5" path="res://scenes/diagonal_b/diagonalb.tscn" id="8_irf0q"]
+[ext_resource type="Texture2D" uid="uid://cee1mlet1ngs5" path="res://assets/sprites/verde_peq.png" id="9_ifl1n"]
+[ext_resource type="Texture2D" uid="uid://bfbhbuvj3i2t1" path="res://assets/sprites/amarelo_peq.png" id="10_fyrmu"]
+[ext_resource type="Texture2D" uid="uid://blflk32ha2p8f" path="res://assets/sprites/vermelho_peq.png" id="11_e7ud4"]
+[ext_resource type="Texture2D" uid="uid://c760mmtuwjni0" path="res://assets/sprites/bola_monitor.png" id="12_riyud"]
+[ext_resource type="Texture2D" uid="uid://d3wi6lsykfnd3" path="res://assets/sprites/vidro_sup2.png" id="13_mbup2"]
+[ext_resource type="Texture2D" uid="uid://bye5t740e7ltf" path="res://assets/sprites/perfect.png" id="14_7y3ox"]
+[ext_resource type="Texture2D" uid="uid://bb8qg5hcd65cp" path="res://assets/sprites/stage2.png" id="15_xf5xf"]
+[ext_resource type="Texture2D" uid="uid://dsymdiqnkvwad" path="res://assets/sprites/vidro_inf2.png" id="16_mwpl8"]
+[ext_resource type="Texture2D" uid="uid://bly0m7ng2i40v" path="res://assets/sprites/watch_out.png" id="17_1yeoo"]
+[ext_resource type="Texture2D" uid="uid://dgacodi0gxfqn" path="res://assets/sprites/game_over.png" id="18_rdtqk"]
+[ext_resource type="Script" path="res://scenes/fases/fase_01/Score.gd" id="19_h51lp"]
+
+[node name="Fase03" type="Node2D"]
+
+[node name="ImagemDeFundo" type="Sprite2D" parent="."]
+position = Vector2(524.5, 301)
+scale = Vector2(0.999047, 1)
+texture = ExtResource("1_unmb6")
+
+[node name="Paddle" parent="." instance=ExtResource("2_7j6u5")]
+visible = false
+position = Vector2(400, 550)
+
+[node name="Bola" parent="." instance=ExtResource("3_6wobo")]
+position = Vector2(401, 500)
+
+[node name="Blocos" type="Node2D" parent="."]
+
+[node name="Bloco2" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_ld2u7")]
+position = Vector2(24, 301)
+rotation = -1.5708
+game_manager = NodePath("../../GameManager")
+
+[node name="Bloco4" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_ld2u7")]
+position = Vector2(399, 23)
+game_manager = NodePath("../../GameManager")
+
+[node name="Bloco8" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_ld2u7")]
+position = Vector2(781, 300)
+rotation = 1.5708
+game_manager = NodePath("../../GameManager")
+
+[node name="Bloco12" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_ld2u7")]
+position = Vector2(398, 555)
+game_manager = NodePath("../../GameManager")
+
+[node name="GameManager" parent="." node_paths=PackedStringArray("blocos", "diagonalA", "diagonalB") instance=ExtResource("5_h0biq")]
+blocos = NodePath("../Blocos")
+proxima_fase = "res://scenes/fases/fase_04/fase_04.tscn"
+diagonalA = NodePath("../DiagonalA")
+diagonalB = NodePath("../DiagonalB")
+
+[node name="Timer" type="Timer" parent="GameManager"]
+wait_time = 3.226
+one_shot = true
+
+[node name="Borda6" type="Sprite2D" parent="."]
+position = Vector2(401, 300)
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("6_w3aee")
+
+[node name="Borda6" type="Sprite2D" parent="Borda6"]
+position = Vector2(-183, 0)
+texture = ExtResource("6_w3aee")
+
+[node name="Borda7" type="Sprite2D" parent="Borda6"]
+position = Vector2(184, 0)
+texture = ExtResource("6_w3aee")
+
+[node name="Borda8" type="Sprite2D" parent="Borda6"]
+position = Vector2(0, 109)
+texture = ExtResource("6_w3aee")
+
+[node name="Borda6" type="Sprite2D" parent="Borda6/Borda8"]
+position = Vector2(-183, 0)
+texture = ExtResource("6_w3aee")
+
+[node name="Borda7" type="Sprite2D" parent="Borda6/Borda8"]
+position = Vector2(184, 0)
+texture = ExtResource("6_w3aee")
+
+[node name="Borda8" type="Sprite2D" parent="Borda6/Borda8"]
+position = Vector2(-1, -217)
+texture = ExtResource("6_w3aee")
+
+[node name="Borda6" type="Sprite2D" parent="Borda6/Borda8/Borda8"]
+position = Vector2(-183, 0)
+texture = ExtResource("6_w3aee")
+
+[node name="Borda7" type="Sprite2D" parent="Borda6/Borda8/Borda8"]
+position = Vector2(184, 0)
+texture = ExtResource("6_w3aee")
+
+[node name="DiagonalA" parent="." groups=["diagonal_a"] instance=ExtResource("7_kjebb")]
+position = Vector2(401, 298)
+
+[node name="DiagonalB" parent="." groups=["diagonal_b"] instance=ExtResource("8_irf0q")]
+visible = false
+position = Vector2(403, 298)
+
+[node name="greenBar" type="Sprite2D" parent="."]
+position = Vector2(923.5, 203.6)
+scale = Vector2(0.943966, 1)
+texture = ExtResource("9_ifl1n")
+
+[node name="yellowBar" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(914, 204)
+scale = Vector2(0.862069, 1)
+texture = ExtResource("10_fyrmu")
+
+[node name="redBar" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(920.5, 204)
+scale = Vector2(0.918103, 1)
+texture = ExtResource("11_e7ud4")
+
+[node name="BolaMonitor" type="Sprite2D" parent="."]
+position = Vector2(889, 69)
+texture = ExtResource("12_riyud")
+
+[node name="BolaMonitor2" type="Sprite2D" parent="."]
+position = Vector2(962, 69)
+texture = ExtResource("12_riyud")
+
+[node name="VidroSup2" type="Sprite2D" parent="."]
+position = Vector2(925, 68.5)
+scale = Vector2(0.855856, 0.696721)
+texture = ExtResource("13_mbup2")
+
+[node name="Perfect" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(924, 424)
+texture = ExtResource("14_7y3ox")
+
+[node name="Stage02" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(924, 425)
+texture = ExtResource("15_xf5xf")
+
+[node name="VidroInf2" type="Sprite2D" parent="."]
+position = Vector2(924.5, 433)
+scale = Vector2(0.944186, 0.976271)
+texture = ExtResource("16_mwpl8")
+
+[node name="WatchOut" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(925, 431)
+texture = ExtResource("17_1yeoo")
+
+[node name="GameOver" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(926, 432)
+texture = ExtResource("18_rdtqk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("19_h51lp")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 907.0
+offset_top = 306.0
+offset_right = 1017.0
+offset_bottom = 359.0
+bbcode_enabled = true
+text = "00"
+metadata/_edit_use_anchors_ = true
