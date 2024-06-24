@@ -7,6 +7,7 @@ extends Area2D
 @onready var som_impacto_paddle : AudioStreamPlayer = $SomImpactoPaddle
 @onready var som_impacto_tela : AudioStreamPlayer = $SomImpactoTela
 @onready var som_bola_off : AudioStreamPlayer = $SomBolaOff
+@onready var som_game_over : AudioStreamPlayer = $SomGameOver
 
 @onready var current_scene_name = get_tree().current_scene.name
 
@@ -15,12 +16,14 @@ extends Area2D
 @onready var barra_vermelha = get_node("/root/"+current_scene_name+"/redBar")
 @onready var bola_monitor = get_node("/root/"+current_scene_name+"/BolaMonitor")
 @onready var bola_monitor2 = get_node("/root/"+current_scene_name+"/BolaMonitor2")
+@onready var watch_out = get_node("/root/"+current_scene_name+"/WatchOut")
 @onready var game_over = get_node("/root/"+current_scene_name+"/GameOver")
 # Movimento da Bola
 var velocidade_da_bola : float = 400.0
 var posicao_inicial : Vector2 = Vector2(403, 500)
 var direcao_inicial : Vector2 = Vector2(0, 0)
 var nova_direcao : Vector2 = Vector2(0, 0)
+var hasDied : bool = false
 
 # Limites da Bola
 var x_minimo : float = 0
@@ -84,6 +87,7 @@ func verificar_posicao_da_bola() -> void:
 	# Se a Bola cair da tela
 	if position.y > y_maximo and not caiu_da_tela:
 		GlobalData.decrease_lives()
+		hasDied = true
 		update_lives_monitor()
 		som_bola_off.play()
 		timer_da_bola.start()
@@ -99,9 +103,13 @@ func change_bar_on_impact() -> void:
 		2: 
 			barra_amarela.visible = false
 			barra_vermelha.visible = true
+			watch_out.visible = true
+			await get_tree().create_timer(2.0).timeout
+			watch_out.visible = false
 		3:
 			barra_vermelha.visible = false
 			GlobalData.decrease_lives()
+			hasDied = true
 			update_lives_monitor()
 			impact_count = 0
 			sair_da_tela()
@@ -155,7 +163,6 @@ func _on_timer_da_bola_timeout():
 	caiu_da_tela = false	
 
 func update_lives_monitor():
-	#print_debug("vidas: ", GlobalData.lives)
 	match GlobalData.lives:
 		2:
 			bola_monitor2.visible = false
@@ -163,10 +170,16 @@ func update_lives_monitor():
 			bola_monitor2.visible = false
 			bola_monitor.visible = false
 		0:
+			watch_out.visible = false
 			gameOver()
 
 func gameOver():
 	# Exibir a tela de game over ou realizar outra ação
+	await get_tree().create_timer(1.0).timeout
+	som_game_over.play()
 	game_over.visible = true
-	get_tree().paused = true
+	#get_tree().paused = true
+	velocidade_da_bola = 0.0
+	#TODO - Display: Continue or Quit? 
+	#if quit go to main menu
 	#get_tree().quit()		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cu3p3i2gvatsj"]
+[gd_scene load_steps=25 format=3 uid="uid://cu3p3i2gvatsj"]
 
 [ext_resource type="Texture2D" uid="uid://bgg12yqad5t7l" path="res://assets/sprites/campo-roxo_hud9_2.png" id="1_awebk"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_0h4wr"]
@@ -14,11 +14,16 @@
 [ext_resource type="Texture2D" uid="uid://c760mmtuwjni0" path="res://assets/sprites/bola_monitor.png" id="14_uxqjj"]
 [ext_resource type="Texture2D" uid="uid://d3wi6lsykfnd3" path="res://assets/sprites/vidro_sup2.png" id="15_3wvo3"]
 [ext_resource type="Texture2D" uid="uid://bye5t740e7ltf" path="res://assets/sprites/perfect.png" id="16_l2fyy"]
-[ext_resource type="Texture2D" uid="uid://dwwlr3jagovu" path="res://assets/sprites/stage1.png" id="17_7xebw"]
 [ext_resource type="Texture2D" uid="uid://dsymdiqnkvwad" path="res://assets/sprites/vidro_inf2.png" id="18_f7n02"]
 [ext_resource type="Script" path="res://scenes/fases/fase_01/Score.gd" id="19_my6o5"]
 [ext_resource type="Texture2D" uid="uid://bly0m7ng2i40v" path="res://assets/sprites/watch_out.png" id="19_s02pd"]
+[ext_resource type="Texture2D" uid="uid://b0pes1kk2444y" path="res://assets/sprites/stage.png" id="20_j8hwf"]
 [ext_resource type="Texture2D" uid="uid://dgacodi0gxfqn" path="res://assets/sprites/game_over.png" id="20_uy0ij"]
+[ext_resource type="Texture2D" uid="uid://bnlvt3j7eyid0" path="res://assets/sprites/num_um.png" id="21_2b5ub"]
+[ext_resource type="Texture2D" uid="uid://bnx3puq5oumw7" path="res://assets/sprites/nice.png" id="21_d1jcs"]
+[ext_resource type="Texture2D" uid="uid://ck6tmkl2gip2r" path="res://assets/sprites/_25.png" id="22_acolu"]
+[ext_resource type="Texture2D" uid="uid://ug5ick6j4aju" path="res://assets/sprites/_50.png" id="23_rn7lg"]
+[ext_resource type="Texture2D" uid="uid://c328yss8joxum" path="res://assets/sprites/no_bonus.png" id="24_xtefc"]
 
 [node name="Fase01" type="Node2D"]
 
@@ -119,11 +124,8 @@ visible = false
 position = Vector2(924, 424)
 texture = ExtResource("16_l2fyy")
 
-[node name="Stage01" type="Sprite2D" parent="."]
-position = Vector2(924, 425)
-texture = ExtResource("17_7xebw")
-
 [node name="VidroInf2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(926.5, 431)
 scale = Vector2(0.944186, 0.976271)
 texture = ExtResource("18_f7n02")
@@ -149,3 +151,33 @@ offset_bottom = 359.0
 bbcode_enabled = true
 text = "00"
 metadata/_edit_use_anchors_ = true
+
+[node name="Stage" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(898, 425)
+texture = ExtResource("20_j8hwf")
+
+[node name="StageNum" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(996, 421)
+texture = ExtResource("21_2b5ub")
+
+[node name="Nice" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(928, 427)
+texture = ExtResource("21_d1jcs")
+
+[node name="25" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(926, 495)
+texture = ExtResource("22_acolu")
+
+[node name="50" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(926, 496)
+texture = ExtResource("23_rn7lg")
+
+[node name="NoBonus" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(925, 423)
+texture = ExtResource("24_xtefc")

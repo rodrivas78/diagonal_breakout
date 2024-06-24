@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c3tsnvbmjopsf"]
+[gd_scene load_steps=26 format=3 uid="uid://c3tsnvbmjopsf"]
 
 [ext_resource type="Texture2D" uid="uid://bgg12yqad5t7l" path="res://assets/sprites/campo-roxo_hud9_2.png" id="1_v25yr"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_g83dj"]
@@ -19,6 +19,12 @@
 [ext_resource type="Texture2D" uid="uid://bly0m7ng2i40v" path="res://assets/sprites/watch_out.png" id="18_2ces5"]
 [ext_resource type="Texture2D" uid="uid://dgacodi0gxfqn" path="res://assets/sprites/game_over.png" id="19_dqyuf"]
 [ext_resource type="Script" path="res://scenes/fases/fase_01/Score.gd" id="19_ooxmd"]
+[ext_resource type="Texture2D" uid="uid://b0pes1kk2444y" path="res://assets/sprites/stage.png" id="20_nlexy"]
+[ext_resource type="Texture2D" uid="uid://bmmbthbn4ldns" path="res://assets/sprites/num_dois.png" id="21_nx34u"]
+[ext_resource type="Texture2D" uid="uid://bnx3puq5oumw7" path="res://assets/sprites/nice.png" id="22_qqt8x"]
+[ext_resource type="Texture2D" uid="uid://ck6tmkl2gip2r" path="res://assets/sprites/_25.png" id="23_1js5i"]
+[ext_resource type="Texture2D" uid="uid://ug5ick6j4aju" path="res://assets/sprites/_50.png" id="24_m2f82"]
+[ext_resource type="Texture2D" uid="uid://c328yss8joxum" path="res://assets/sprites/no_bonus.png" id="25_gp12h"]
 
 [node name="Fase02" type="Node2D"]
 
@@ -228,3 +234,33 @@ offset_bottom = 359.0
 bbcode_enabled = true
 text = "00"
 metadata/_edit_use_anchors_ = true
+
+[node name="Stage" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(898, 425)
+texture = ExtResource("20_nlexy")
+
+[node name="StageNum" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(996, 421)
+texture = ExtResource("21_nx34u")
+
+[node name="Nice" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(928, 427)
+texture = ExtResource("22_qqt8x")
+
+[node name="25" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(926, 495)
+texture = ExtResource("23_1js5i")
+
+[node name="50" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(926, 496)
+texture = ExtResource("24_m2f82")
+
+[node name="NoBonus" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(925, 423)
+texture = ExtResource("25_gp12h")

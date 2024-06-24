@@ -1,17 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://74yx6akk6vh3"]
+[gd_scene load_steps=5 format=3 uid="uid://74yx6akk6vh3"]
 
 [ext_resource type="Script" path="res://scenes/game_manager/game_manager.gd" id="1_qhtyb"]
 [ext_resource type="AudioStream" uid="uid://gaj2b6wb60do" path="res://assets/sons/bonusPoints.wav" id="2_24r4e"]
+[ext_resource type="AudioStream" uid="uid://d06u6us7dq4ui" path="res://assets/sons/stage_cleared.wav" id="3_a2lxk"]
+[ext_resource type="AudioStream" uid="uid://ctpxpw587wrdb" path="res://assets/sons/perfect1.wav" id="4_248d3"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_qhtyb")
 
 [node name="TimerDoPassarDeFase" type="Timer" parent="."]
-wait_time = 0.226
+wait_time = 0.964
 one_shot = true
 
 [node name="SomBonusPoints" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_24r4e")
 volume_db = -13.818
+
+[node name="SomLevelCompleted" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_a2lxk")
+volume_db = -13.818
+
+[node name="SomPerfect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_248d3")
+volume_db = -9.573
 
 [connection signal="timeout" from="TimerDoPassarDeFase" to="." method="_on_timer_do_passar_de_fase_timeout"]
