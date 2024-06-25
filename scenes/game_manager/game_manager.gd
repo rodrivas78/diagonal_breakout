@@ -64,6 +64,8 @@ func receber_inputs() -> void:
 	if Input.is_action_just_pressed("nextStage"):
 		timer_do_passar_de_fase.start()
 	if Input.is_action_just_pressed("reiniciar"):
+		#TODO - Continue -> YES
+		GlobalData.reset_lives()
 		get_tree().reload_current_scene()
 	# Sai do jogo
 	if Input.is_action_just_pressed("sair"):
