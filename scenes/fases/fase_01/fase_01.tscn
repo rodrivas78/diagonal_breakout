@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cu3p3i2gvatsj"]
+[gd_scene load_steps=25 format=3 uid="uid://chvwhpbfvnlx4"]
 
 [ext_resource type="Texture2D" uid="uid://bgg12yqad5t7l" path="res://assets/sprites/campo-roxo_hud9_2.png" id="1_awebk"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_0h4wr"]

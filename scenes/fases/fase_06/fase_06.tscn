@@ -26,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://ug5ick6j4aju" path="res://assets/sprites/_50.png" id="24_6oukb"]
 [ext_resource type="Texture2D" uid="uid://c328yss8joxum" path="res://assets/sprites/no_bonus.png" id="25_pj0wu"]
 
-[node name="Fase06" type="Node2D"]
+[node name="Fase07" type="Node2D"]
 
 [node name="ImagemDeFundo" type="Sprite2D" parent="."]
 position = Vector2(524.5, 301)
