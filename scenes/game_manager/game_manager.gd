@@ -163,6 +163,7 @@ func add_25_points():
 func _on_timer_do_passar_de_fase_timeout():
 	# Carrega a próxima fase
 	get_tree().change_scene_to_file(proxima_fase)
+	#res://scenes/fases/fase_02/fase_02.tscn
 	
 func ativa_ou_desativa_paddles() -> void:
 	if diagonalA.visible == true:
