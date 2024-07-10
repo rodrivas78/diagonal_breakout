@@ -1,17 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://bd4iqkqvqr738"]
+[gd_scene load_steps=4 format=3 uid="uid://bd4iqkqvqr738"]
 
-[ext_resource type="Texture2D" uid="uid://bgg12yqad5t7l" path="res://assets/sprites/campo-roxo_hud9_2.png" id="1_hfqc4"]
 [ext_resource type="Script" path="res://scenes/title_screen/TitleScreen.gd" id="1_of714"]
+[ext_resource type="Texture2D" uid="uid://dkn445bf0vsau" path="res://assets/sprites/title_screen.jpg" id="2_2lpsw"]
+[ext_resource type="Texture2D" uid="uid://dvgrtdfhpla3h" path="res://assets/sprites/green_selector.png" id="3_722on"]
 
 [node name="TitleScreen" type="Node2D"]
 script = ExtResource("1_of714")
 
 [node name="ImagemDeFundo" type="Sprite2D" parent="."]
-position = Vector2(524.5, 301)
+position = Vector2(524.5, 299)
 scale = Vector2(0.999047, 1)
-texture = ExtResource("1_hfqc4")
+texture = ExtResource("2_2lpsw")
+
+[node name="selector" type="Sprite2D" parent="."]
+position = Vector2(870.5, 181)
+scale = Vector2(0.999047, 1)
+texture = ExtResource("3_722on")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
 anchors_preset = -1
