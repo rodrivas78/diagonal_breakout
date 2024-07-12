@@ -1,6 +1,6 @@
 extends Node
 
-var primeira_fase : String = "res://scenes/fases/fase_07/fase_07.tscn"
+var primeira_fase : String = "res://scenes/fases/fase_11/fase_11.tscn"
 var add = false
 var turnOnFadeOut = false
 var counter = 0

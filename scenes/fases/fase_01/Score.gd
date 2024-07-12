@@ -10,7 +10,9 @@ func _ready():
 	ScoreManager.connect("player_score_updated", _on_player_score_updated)
 	updated_score = ScoreManager.player_score
 	# set score position
-	if updated_score > 99:
+	if updated_score > 999:
+		score_label.set_position(Vector2(889, 306))
+	elif updated_score > 99:
 		score_label.set_position(Vector2(898, 306))
 	elif updated_score:
 		score_label.set_position(Vector2(907, 306))

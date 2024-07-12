@@ -42,6 +42,7 @@ func _ready():
 	timer_da_bola.one_shot = true
 	resetar_bola()
 	update_lives_monitor()
+	update_level()
 	
 
 func _process(delta):
@@ -109,6 +110,7 @@ func change_bar_on_impact() -> void:
 		3:
 			barra_vermelha.visible = false
 			GlobalData.decrease_lives()
+			som_bola_off.play()
 			hasDied = true
 			update_lives_monitor()
 			impact_count = 0
@@ -172,6 +174,13 @@ func update_lives_monitor():
 		0:
 			watch_out.visible = false
 			gameOver()
+			
+func update_level():
+	if (current_scene_name == "Fase08"):
+		GlobalData.increase_level()
+	if (GlobalData.level == 2):
+		velocidade_da_bola = 600.0
+		#todo - show "level 2" on screen
 
 func gameOver():
 	# Exibir a tela de game over ou realizar outra ação
