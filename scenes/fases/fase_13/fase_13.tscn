@@ -144,6 +144,7 @@ position = Vector2(962, 69)
 texture = ExtResource("12_vgtsj")
 
 [node name="VidroSup2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(925, 68.5)
 scale = Vector2(0.855856, 0.696721)
 texture = ExtResource("13_qu0cd")
@@ -159,6 +160,7 @@ position = Vector2(924, 425)
 texture = ExtResource("15_qlp8d")
 
 [node name="VidroInf2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(924.5, 433)
 scale = Vector2(0.944186, 0.976271)
 texture = ExtResource("16_432ua")

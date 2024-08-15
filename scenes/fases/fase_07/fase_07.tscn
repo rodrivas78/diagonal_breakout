@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://b6w6utohamlj0"]
+[gd_scene load_steps=27 format=3 uid="uid://b6w6utohamlj0"]
 
-[ext_resource type="Texture2D" uid="uid://bgg12yqad5t7l" path="res://assets/sprites/campo-roxo_hud9_2.png" id="1_ftvrc"]
+[ext_resource type="Texture2D" uid="uid://cuk7lthad6lrt" path="res://assets/sprites/hud_bg_alpha.png" id="1_v7mhb"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_357vd"]
+[ext_resource type="Texture2D" uid="uid://bec7ou2nd2vqc" path="res://assets/sprites/bg_roxol1.jpg" id="2_bj1us"]
 [ext_resource type="PackedScene" uid="uid://h17w5q1iroht" path="res://scenes/bola/bola.tscn" id="3_v6tkm"]
 [ext_resource type="PackedScene" uid="uid://dh5rpeuhfoqpk" path="res://scenes/bloco/bloco.tscn" id="4_c2fqp"]
 [ext_resource type="PackedScene" uid="uid://74yx6akk6vh3" path="res://scenes/game_manager/game_manager.tscn" id="5_nc58k"]
@@ -31,7 +32,11 @@
 [node name="ImagemDeFundo" type="Sprite2D" parent="."]
 position = Vector2(524.5, 301)
 scale = Vector2(0.999047, 1)
-texture = ExtResource("1_ftvrc")
+texture = ExtResource("1_v7mhb")
+
+[node name="BackGround" type="Sprite2D" parent="."]
+position = Vector2(398.941, 301)
+texture = ExtResource("2_bj1us")
 
 [node name="Paddle" parent="." instance=ExtResource("2_357vd")]
 visible = false
@@ -176,6 +181,7 @@ position = Vector2(962, 69)
 texture = ExtResource("12_wuntg")
 
 [node name="VidroSup2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(925, 68.5)
 scale = Vector2(0.855856, 0.696721)
 texture = ExtResource("13_urj6k")
@@ -191,6 +197,7 @@ position = Vector2(924, 425)
 texture = ExtResource("15_x2qee")
 
 [node name="VidroInf2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(924.5, 433)
 scale = Vector2(0.944186, 0.976271)
 texture = ExtResource("16_0gosf")

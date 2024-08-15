@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://b2vmhs2i86i2i"]
+[gd_scene load_steps=27 format=3 uid="uid://b2vmhs2i86i2i"]
 
-[ext_resource type="Texture2D" uid="uid://bgg12yqad5t7l" path="res://assets/sprites/campo-roxo_hud9_2.png" id="1_jh2t8"]
+[ext_resource type="Texture2D" uid="uid://cuk7lthad6lrt" path="res://assets/sprites/hud_bg_alpha.png" id="1_3h0b5"]
+[ext_resource type="Texture2D" uid="uid://bec7ou2nd2vqc" path="res://assets/sprites/bg_roxol1.jpg" id="2_l8jt0"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_u7q1d"]
 [ext_resource type="PackedScene" uid="uid://h17w5q1iroht" path="res://scenes/bola/bola.tscn" id="3_dthjn"]
 [ext_resource type="PackedScene" uid="uid://dh5rpeuhfoqpk" path="res://scenes/bloco/bloco.tscn" id="4_cbk5e"]
@@ -31,7 +32,11 @@
 [node name="ImagemDeFundo" type="Sprite2D" parent="."]
 position = Vector2(524.5, 301)
 scale = Vector2(0.999047, 1)
-texture = ExtResource("1_jh2t8")
+texture = ExtResource("1_3h0b5")
+
+[node name="BackGround" type="Sprite2D" parent="."]
+position = Vector2(398.941, 301)
+texture = ExtResource("2_l8jt0")
 
 [node name="Paddle" parent="." instance=ExtResource("2_u7q1d")]
 visible = false

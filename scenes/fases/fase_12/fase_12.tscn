@@ -36,7 +36,6 @@ texture = ExtResource("1_n4ryv")
 
 [node name="BackGround" type="Sprite2D" parent="."]
 position = Vector2(398.941, 301)
-scale = Vector2(0.990148, 0.99)
 texture = ExtResource("2_wm3pv")
 
 [node name="Paddle" parent="." instance=ExtResource("2_uu3hq")]
