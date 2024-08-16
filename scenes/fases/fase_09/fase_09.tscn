@@ -1,8 +1,8 @@
 [gd_scene load_steps=27 format=3 uid="uid://cx8ysk5e0lhk3"]
 
 [ext_resource type="Texture2D" uid="uid://cuk7lthad6lrt" path="res://assets/sprites/hud_bg_alpha.png" id="1_54d2o"]
+[ext_resource type="Texture2D" uid="uid://krfpoxiee1g4" path="res://assets/sprites/end_screen1.jpg" id="2_3l7qs"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_j5t8m"]
-[ext_resource type="Texture2D" uid="uid://bec7ou2nd2vqc" path="res://assets/sprites/bg_roxol1.jpg" id="2_p3b40"]
 [ext_resource type="PackedScene" uid="uid://h17w5q1iroht" path="res://scenes/bola/bola.tscn" id="3_bog1o"]
 [ext_resource type="PackedScene" uid="uid://dh5rpeuhfoqpk" path="res://scenes/bloco/bloco.tscn" id="4_a1gy8"]
 [ext_resource type="PackedScene" uid="uid://74yx6akk6vh3" path="res://scenes/game_manager/game_manager.tscn" id="5_n70k8"]
@@ -36,7 +36,7 @@ texture = ExtResource("1_54d2o")
 
 [node name="BackGround" type="Sprite2D" parent="."]
 position = Vector2(398.941, 301)
-texture = ExtResource("2_p3b40")
+texture = ExtResource("2_3l7qs")
 
 [node name="Paddle" parent="." instance=ExtResource("2_j5t8m")]
 visible = false

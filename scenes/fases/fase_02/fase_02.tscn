@@ -1,8 +1,8 @@
 [gd_scene load_steps=27 format=3 uid="uid://c3tsnvbmjopsf"]
 
 [ext_resource type="Texture2D" uid="uid://cuk7lthad6lrt" path="res://assets/sprites/hud_bg_alpha.png" id="1_crcji"]
-[ext_resource type="Texture2D" uid="uid://bec7ou2nd2vqc" path="res://assets/sprites/bg_roxol1.jpg" id="2_4hp73"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_g83dj"]
+[ext_resource type="Texture2D" uid="uid://p7aubskmp6qe" path="res://assets/sprites/bg_vermelho1.jpg" id="2_o3egw"]
 [ext_resource type="PackedScene" uid="uid://h17w5q1iroht" path="res://scenes/bola/bola.tscn" id="3_idfwl"]
 [ext_resource type="PackedScene" uid="uid://dh5rpeuhfoqpk" path="res://scenes/bloco/bloco.tscn" id="4_r74yg"]
 [ext_resource type="PackedScene" uid="uid://74yx6akk6vh3" path="res://scenes/game_manager/game_manager.tscn" id="5_h0ebo"]
@@ -36,7 +36,7 @@ texture = ExtResource("1_crcji")
 
 [node name="BackGround" type="Sprite2D" parent="."]
 position = Vector2(398.941, 301)
-texture = ExtResource("2_4hp73")
+texture = ExtResource("2_o3egw")
 
 [node name="Paddle" parent="." instance=ExtResource("2_g83dj")]
 visible = false
@@ -121,7 +121,7 @@ game_manager = NodePath("../../GameManager")
 
 [node name="GameManager" parent="." node_paths=PackedStringArray("blocos", "diagonalA", "diagonalB") instance=ExtResource("5_h0ebo")]
 blocos = NodePath("../Blocos")
-proxima_fase = "res://scenes/fases/fase_03/fase_03.tscn"
+proxima_fase = "res://scenes/fases/fase_09/fase_09.tscn"
 diagonalA = NodePath("../DiagonalA")
 diagonalB = NodePath("../DiagonalB")
 
@@ -200,6 +200,7 @@ position = Vector2(962, 69)
 texture = ExtResource("13_okvv4")
 
 [node name="VidroSup2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(925, 68.5)
 scale = Vector2(0.855856, 0.696721)
 texture = ExtResource("14_3o37d")
@@ -215,6 +216,7 @@ position = Vector2(924, 425)
 texture = ExtResource("16_ktprm")
 
 [node name="VidroInf2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(924.5, 433)
 scale = Vector2(0.944186, 0.976271)
 texture = ExtResource("17_gxby1")
