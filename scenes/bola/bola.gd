@@ -184,7 +184,7 @@ func update_level():
 		GlobalData.increase_level()
 		#velocidade_da_bola += 100.0
 		#TODO - melhorar esta lógica
-		print_debug(GlobalData.level)
+		print_debug("LEVEL: ", GlobalData.level)
 	match GlobalData.level:
 		1:
 			velocidade_da_bola = 400.0
@@ -198,7 +198,8 @@ func update_level():
 			velocidade_da_bola = 800.0
 		6:
 			velocidade_da_bola = 900.0
-			
+		
+	print_debug("velocidade da bola", velocidade_da_bola)
 		#TODO - show "level 2" on screen
 		#por na cena da fase
 		#consultar qual o level em globalData
