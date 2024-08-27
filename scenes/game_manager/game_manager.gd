@@ -120,6 +120,8 @@ func receber_inputs() -> void:
 						
 	#todo - implementar gameOver
 	if (gameOver):
+		diagonalA.visible = false
+		diagonalB.visible = false
 		black_overlay.visible = true
 		continue_yn.visible = true
 		if (firstTime):

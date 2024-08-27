@@ -32,7 +32,7 @@ var hasDied : bool = false
 var x_minimo : float = 0
 var x_maximo : float = 800
 var y_minimo : float = 0
-var y_maximo : float = 550
+var y_maximo : float = 600
 
 # Verificações
 var primeiro_lancamento : bool = true
@@ -180,18 +180,37 @@ func update_lives_monitor():
 			#que ativa um método dentro de _process
 			
 func update_level():
-	#print_debug(GlobalData.level)
-	#print_debug(current_scene_name)
-	if (current_scene_name == "Fase10"):
+	if (current_scene_name == "Fase10" || current_scene_name == "Fase03"):
 		GlobalData.increase_level()
-	if (GlobalData.level == 2):
-		velocidade_da_bola = 500.0
+		#velocidade_da_bola += 100.0
+		#TODO - melhorar esta lógica
+		print_debug(GlobalData.level)
+	match GlobalData.level:
+		1:
+			velocidade_da_bola = 400.0
+		2:
+			velocidade_da_bola = 500.0
+		3:
+			velocidade_da_bola = 600.0
+		4:
+			velocidade_da_bola = 700.0
+		5:
+			velocidade_da_bola = 800.0
+		6:
+			velocidade_da_bola = 900.0
+			
 		#TODO - show "level 2" on screen
 		#por na cena da fase
-		#consultar qual o level em globalDara
+		#consultar qual o level em globalData
 		#no inicio da fase 10 e etc
 		#ou adicionar variavel que mostre o LEVEL 
 		#na tela pelo gameManager.
+		#Fazer um ou || neste if que ele o level.
+		#por nele as outras fases que
+		#fazer um switch de de acordo com o level
+		#soma a velocidade da bola += 100.0
+		#talvez por a velocidade da bola 
+		#em GlobalData 
 
 func gameOver():
 	# Exibir a tela de game over ou realizar outra ação

@@ -2,7 +2,7 @@ extends Node
 
 
 var lives = 3
-var level = 1
+var level = 0
 
 
 func decrease_lives():
@@ -15,3 +15,6 @@ func reset_lives():
 
 func increase_level():
 	level += 1
+	
+func reset_level():
+	level = 1

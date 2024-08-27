@@ -33,9 +33,9 @@ func receber_inputs() -> void:
 				await get_tree().create_timer(2.0).timeout
 				GlobalData.reset_lives()
 				ScoreManager.reset_player_score()
+				GlobalData.reset_level()
 				get_tree().change_scene_to_file(primeira_fase)
-			1:
-				#todo - add 
+			1: 
 				selected.play()
 				await get_tree().create_timer(1.0).timeout
 				get_tree().change_scene_to_file(primeira_fase)
