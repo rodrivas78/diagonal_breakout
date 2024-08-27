@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://bd4iqkqvqr738"]
+
+[ext_resource type="Script" path="res://scenes/title_screen/TitleScreen.gd" id="1_of714"]
+[ext_resource type="Texture2D" uid="uid://dkn445bf0vsau" path="res://assets/sprites/title_screen.jpg" id="2_2lpsw"]
+[ext_resource type="Texture2D" uid="uid://dvgrtdfhpla3h" path="res://assets/sprites/green_selector.png" id="3_722on"]
+[ext_resource type="Texture2D" uid="uid://dm1f75ky7drau" path="res://assets/sprites/pink_selector.png" id="4_xffmv"]
+[ext_resource type="AudioStream" uid="uid://cxcycdgjle3xu" path="res://assets/sons/preparation_title.wav" id="5_a77g4"]
+[ext_resource type="AudioStream" uid="uid://dhoamcs2myc4j" path="res://assets/sons/click3.wav" id="6_1i7r7"]
+[ext_resource type="AudioStream" uid="uid://bilfd8l1gjt8p" path="res://assets/sons/choosed_item.wav" id="7_oi1ny"]
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_of714")
+
+[node name="ImagemDeFundo" type="Sprite2D" parent="."]
+position = Vector2(524.5, 299)
+scale = Vector2(0.999047, 1)
+texture = ExtResource("2_2lpsw")
+
+[node name="selector" type="Sprite2D" parent="."]
+position = Vector2(870.5, 181)
+scale = Vector2(0.999047, 1)
+texture = ExtResource("3_722on")
+
+[node name="selector2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(870.5, 297)
+scale = Vector2(0.999047, 1)
+texture = ExtResource("4_xffmv")
+
+[node name="selector3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(870.5, 418)
+scale = Vector2(0.999047, 1)
+texture = ExtResource("4_xffmv")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.239048
+anchor_bottom = 0.2
+offset_left = 302.0
+offset_top = 248.0
+offset_right = 412.0
+offset_bottom = 301.0
+bbcode_enabled = true
+text = "Title Screen"
+metadata/_edit_use_anchors_ = true
+
+[node name="SomTitleScreen" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_a77g4")
+volume_db = -2.182
+autoplay = true
+
+[node name="SomSelector" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_1i7r7")
+volume_db = -10.909
+
+[node name="SomChoosed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_oi1ny")
+volume_db = -10.182

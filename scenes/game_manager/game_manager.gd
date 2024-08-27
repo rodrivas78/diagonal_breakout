@@ -23,6 +23,8 @@ var blocos_na_fase : int = 0
 @onready var no_bonus = get_node("/root/"+current_scene_name+"/NoBonus")
 @onready var ball = get_node("/root/"+current_scene_name+"/Bola")
 
+#@onready var first_stage = "res://scenes/fases/fase_01/fase_01.tscn"
+
 #Controle dos bumpers
 @export_group("Controle dos Bumpers")
 @export var diagonalA : Node2D
@@ -44,7 +46,13 @@ var stage_number
 var timer_node
 var score = 0
 
-
+#func enter():
+	##get_tree().change_scene_to_file(first_stage)
+	##timer_do_passar_de_fase.start()
+	##get_tree().reload_current_scene()
+	#print_debug("dentro de entrar")
+	#pass
+	
 func _ready():
 	buscar_blocos()
 	ativa_ou_desativa_paddles()
@@ -62,8 +70,11 @@ func receber_inputs() -> void:
 	diagonalA.position = jump_positions
 	diagonalB.position = jump_positions
 	if Input.is_action_just_pressed("nextStage"):
+		print_debug("is_action_just_pressed(nextStage)")
 		timer_do_passar_de_fase.start()
 	if Input.is_action_just_pressed("reiniciar"):
+		#TODO - Continue -> YES
+		GlobalData.reset_lives()
 		get_tree().reload_current_scene()
 	# Sai do jogo
 	if Input.is_action_just_pressed("sair"):
@@ -98,7 +109,6 @@ func receber_inputs() -> void:
 func buscar_blocos() -> void:
 	# Conta quantos Blocos há na fase
 	for bloco in blocos.get_children():
-		#print_debug("blocos_na_fase: ",blocos_na_fase)
 		blocos_na_fase += 1
 
 func atualizar_contagem_dos_blocos() -> void:
@@ -108,7 +118,6 @@ func atualizar_contagem_dos_blocos() -> void:
 		perfect_sound.play()
 		perfect.visible = true
 		ball.velocidade_da_bola = 0.0
-		#await get_tree().create_timer(0.5).timeout
 		await get_tree().create_timer(1.0).timeout
 		bonus_50.visible = true
 		add_50_points()
@@ -116,7 +125,6 @@ func atualizar_contagem_dos_blocos() -> void:
 		level_completed_sound.play()
 		nice.visible = true
 		ball.velocidade_da_bola = 0.0
-		#await get_tree().create_timer(0.5).timeout
 		await get_tree().create_timer(1.0).timeout
 		bonus_25.visible = true
 		add_25_points()
@@ -155,6 +163,7 @@ func add_25_points():
 func _on_timer_do_passar_de_fase_timeout():
 	# Carrega a próxima fase
 	get_tree().change_scene_to_file(proxima_fase)
+	#res://scenes/fases/fase_02/fase_02.tscn
 	
 func ativa_ou_desativa_paddles() -> void:
 	if diagonalA.visible == true:

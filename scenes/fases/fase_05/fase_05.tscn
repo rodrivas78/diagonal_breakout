@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://babyn4rnn5xve"]
+[gd_scene load_steps=27 format=3 uid="uid://babyn4rnn5xve"]
 
 [ext_resource type="Texture2D" uid="uid://bgg12yqad5t7l" path="res://assets/sprites/campo-roxo_hud9_2.png" id="1_gveqe"]
+[ext_resource type="Texture2D" uid="uid://cwvbtpxwj8kbc" path="res://assets/sprites/bg_verde2.jpg" id="2_m5x26"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_qaf8o"]
 [ext_resource type="PackedScene" uid="uid://h17w5q1iroht" path="res://scenes/bola/bola.tscn" id="3_unp2w"]
 [ext_resource type="PackedScene" uid="uid://dh5rpeuhfoqpk" path="res://scenes/bloco/bloco.tscn" id="4_8e4fg"]
@@ -33,6 +34,10 @@ position = Vector2(524.5, 301)
 scale = Vector2(0.999047, 1)
 texture = ExtResource("1_gveqe")
 
+[node name="BackGround" type="Sprite2D" parent="."]
+position = Vector2(398.941, 301)
+texture = ExtResource("2_m5x26")
+
 [node name="Paddle" parent="." instance=ExtResource("2_qaf8o")]
 visible = false
 position = Vector2(400, 550)
@@ -62,7 +67,7 @@ game_manager = NodePath("../../GameManager")
 
 [node name="GameManager" parent="." node_paths=PackedStringArray("blocos", "diagonalA", "diagonalB") instance=ExtResource("5_xcjpd")]
 blocos = NodePath("../Blocos")
-proxima_fase = "res://scenes/fases/fase_06/fase_06.tscn"
+proxima_fase = "res://scenes/fases/fase_02/fase_02.tscn"
 diagonalA = NodePath("../DiagonalA")
 diagonalB = NodePath("../DiagonalB")
 
@@ -71,6 +76,7 @@ wait_time = 3.226
 one_shot = true
 
 [node name="Borda6" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(401, 300)
 scale = Vector2(1.05, 1.05)
 texture = ExtResource("6_4jeew")

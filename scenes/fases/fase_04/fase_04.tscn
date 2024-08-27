@@ -1,7 +1,8 @@
-[gd_scene load_steps=26 format=3 uid="uid://cwd28y2ehx57n"]
+[gd_scene load_steps=27 format=3 uid="uid://cwd28y2ehx57n"]
 
-[ext_resource type="Texture2D" uid="uid://bgg12yqad5t7l" path="res://assets/sprites/campo-roxo_hud9_2.png" id="1_xljdq"]
+[ext_resource type="Texture2D" uid="uid://cuk7lthad6lrt" path="res://assets/sprites/hud_bg_alpha.png" id="1_mpkl2"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_eexyb"]
+[ext_resource type="Texture2D" uid="uid://bec7ou2nd2vqc" path="res://assets/sprites/bg_roxol1.jpg" id="2_uythn"]
 [ext_resource type="PackedScene" uid="uid://h17w5q1iroht" path="res://scenes/bola/bola.tscn" id="3_o6u5n"]
 [ext_resource type="PackedScene" uid="uid://dh5rpeuhfoqpk" path="res://scenes/bloco/bloco.tscn" id="4_6ky2q"]
 [ext_resource type="PackedScene" uid="uid://74yx6akk6vh3" path="res://scenes/game_manager/game_manager.tscn" id="5_xible"]
@@ -31,7 +32,11 @@
 [node name="ImagemDeFundo" type="Sprite2D" parent="."]
 position = Vector2(524.5, 301)
 scale = Vector2(0.999047, 1)
-texture = ExtResource("1_xljdq")
+texture = ExtResource("1_mpkl2")
+
+[node name="BackGround" type="Sprite2D" parent="."]
+position = Vector2(398.941, 301)
+texture = ExtResource("2_uythn")
 
 [node name="Paddle" parent="." instance=ExtResource("2_eexyb")]
 visible = false
@@ -62,7 +67,7 @@ game_manager = NodePath("../../GameManager")
 
 [node name="GameManager" parent="." node_paths=PackedStringArray("blocos", "diagonalA", "diagonalB") instance=ExtResource("5_xible")]
 blocos = NodePath("../Blocos")
-proxima_fase = "res://scenes/fases/fase_05/fase_05.tscn"
+proxima_fase = "res://scenes/fases/fase_07/fase_07.tscn"
 diagonalA = NodePath("../DiagonalA")
 diagonalB = NodePath("../DiagonalB")
 
@@ -71,6 +76,7 @@ wait_time = 3.226
 one_shot = true
 
 [node name="Borda6" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(401, 300)
 scale = Vector2(1.05, 1.05)
 texture = ExtResource("6_3migy")
@@ -140,6 +146,7 @@ position = Vector2(962, 69)
 texture = ExtResource("12_owbxm")
 
 [node name="VidroSup2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(925, 68.5)
 scale = Vector2(0.855856, 0.696721)
 texture = ExtResource("13_wmr8x")
@@ -155,6 +162,7 @@ position = Vector2(924, 425)
 texture = ExtResource("15_foa06")
 
 [node name="VidroInf2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(924.5, 433)
 scale = Vector2(0.944186, 0.976271)
 texture = ExtResource("16_1njk7")
