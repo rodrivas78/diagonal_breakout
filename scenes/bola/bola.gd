@@ -8,9 +8,11 @@ extends Area2D
 @onready var som_impacto_tela : AudioStreamPlayer = $SomImpactoTela
 @onready var som_bola_off : AudioStreamPlayer = $SomBolaOff
 @onready var som_game_over : AudioStreamPlayer = $SomGameOver
+@onready var game_over_music : AudioStreamPlayer = $GameOverMusic
 
 @onready var current_scene_name = get_tree().current_scene.name
 
+@onready var game_manager = get_node("/root/"+current_scene_name+"/GameManager")
 @onready var barra_verde = get_node("/root/"+current_scene_name+"/greenBar")
 @onready var barra_amarela = get_node("/root/"+current_scene_name+"/yellowBar")
 @onready var barra_vermelha = get_node("/root/"+current_scene_name+"/redBar")
@@ -18,6 +20,7 @@ extends Area2D
 @onready var bola_monitor2 = get_node("/root/"+current_scene_name+"/BolaMonitor2")
 @onready var watch_out = get_node("/root/"+current_scene_name+"/WatchOut")
 @onready var game_over = get_node("/root/"+current_scene_name+"/GameOver")
+
 # Movimento da Bola
 var velocidade_da_bola : float = 400.0
 var posicao_inicial : Vector2 = Vector2(403, 500)
@@ -159,7 +162,6 @@ func _on_body_entered(body):
 		body.receber_dano()
 		nova_direcao *= -1
 
-
 func _on_timer_da_bola_timeout():
 	sair_da_tela()
 	caiu_da_tela = false	
@@ -174,13 +176,22 @@ func update_lives_monitor():
 		0:
 			watch_out.visible = false
 			gameOver()
+			#todo - transfomrr gameOver em um boolean
+			#que ativa um método dentro de _process
 			
 func update_level():
-	if (current_scene_name == "Fase08"):
+	#print_debug(GlobalData.level)
+	#print_debug(current_scene_name)
+	if (current_scene_name == "Fase10"):
 		GlobalData.increase_level()
 	if (GlobalData.level == 2):
-		velocidade_da_bola = 600.0
-		#todo - show "level 2" on screen
+		velocidade_da_bola = 500.0
+		#TODO - show "level 2" on screen
+		#por na cena da fase
+		#consultar qual o level em globalDara
+		#no inicio da fase 10 e etc
+		#ou adicionar variavel que mostre o LEVEL 
+		#na tela pelo gameManager.
 
 func gameOver():
 	# Exibir a tela de game over ou realizar outra ação
@@ -189,6 +200,10 @@ func gameOver():
 	game_over.visible = true
 	#get_tree().paused = true
 	velocidade_da_bola = 0.0
+	
+	await get_tree().create_timer(2.0).timeout
+	game_manager.gameOver = true
+	game_over_music.play()
 	#TODO - Display: Continue or Quit? 
 	#if quit go to main menu
 	#get_tree().quit()		

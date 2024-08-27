@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://74yx6akk6vh3"]
+[gd_scene load_steps=8 format=3 uid="uid://74yx6akk6vh3"]
 
 [ext_resource type="Script" path="res://scenes/game_manager/game_manager.gd" id="1_qhtyb"]
 [ext_resource type="AudioStream" uid="uid://gaj2b6wb60do" path="res://assets/sons/bonusPoints.wav" id="2_24r4e"]
 [ext_resource type="AudioStream" uid="uid://d06u6us7dq4ui" path="res://assets/sons/stage_cleared.wav" id="3_a2lxk"]
 [ext_resource type="AudioStream" uid="uid://ctpxpw587wrdb" path="res://assets/sons/perfect1.wav" id="4_248d3"]
+[ext_resource type="AudioStream" uid="uid://bstd4ff26rxvm" path="res://assets/sons/game_over.wav" id="5_x0eid"]
+[ext_resource type="AudioStream" uid="uid://dhoamcs2myc4j" path="res://assets/sons/click3.wav" id="7_cdxtn"]
+[ext_resource type="AudioStream" uid="uid://bilfd8l1gjt8p" path="res://assets/sons/choosed_item.wav" id="8_7hhh8"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_qhtyb")
@@ -23,5 +26,17 @@ volume_db = -13.818
 [node name="SomPerfect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_248d3")
 volume_db = -9.573
+
+[node name="SomGameOver" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_x0eid")
+volume_db = -9.11
+
+[node name="SomSelector" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_cdxtn")
+volume_db = -10.909
+
+[node name="SomChoosed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_7hhh8")
+volume_db = -10.182
 
 [connection signal="timeout" from="TimerDoPassarDeFase" to="." method="_on_timer_do_passar_de_fase_timeout"]

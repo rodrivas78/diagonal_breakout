@@ -1,6 +1,7 @@
 extends Node
 
 var primeira_fase : String = "res://scenes/fases/fase_03/fase_03.tscn"
+
 var add = false
 var turnOnFadeOut = false
 var counter = 0
@@ -30,6 +31,8 @@ func receber_inputs() -> void:
 				selected.play()
 				turnOnFadeOut = true
 				await get_tree().create_timer(2.0).timeout
+				GlobalData.reset_lives()
+				ScoreManager.reset_player_score()
 				get_tree().change_scene_to_file(primeira_fase)
 			1:
 				#todo - add 

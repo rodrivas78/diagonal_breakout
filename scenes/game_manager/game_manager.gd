@@ -23,7 +23,16 @@ var blocos_na_fase : int = 0
 @onready var no_bonus = get_node("/root/"+current_scene_name+"/NoBonus")
 @onready var ball = get_node("/root/"+current_scene_name+"/Bola")
 
+@onready var black_overlay = get_node("/root/"+current_scene_name+"/BkOverlay")
+@onready var continue_yn = get_node("/root/"+current_scene_name+"/ContinueYN")
+@onready var yes_selector = get_node("/root/"+current_scene_name+"/YesSelector")
+@onready var no_selector = get_node("/root/"+current_scene_name+"/NoSelector")
+
+@onready var select : AudioStreamPlayer = $SomSelector
+@onready var selected : AudioStreamPlayer = $SomChoosed
+
 #@onready var first_stage = "res://scenes/fases/fase_01/fase_01.tscn"
+var title_screen : String = "res://scenes/title_screen/TitleScreen.tscn"
 
 #Controle dos bumpers
 @export_group("Controle dos Bumpers")
@@ -45,6 +54,10 @@ var stage_node
 var stage_number
 var timer_node
 var score = 0
+var gameOver = false
+var firstTime = true
+var counter = 0
+var toggle = false
 
 #func enter():
 	##get_tree().change_scene_to_file(first_stage)
@@ -105,6 +118,46 @@ func receber_inputs() -> void:
 		if iY > 0:
 			iY -= 1	
 						
+	#todo - implementar gameOver
+	if (gameOver):
+		black_overlay.visible = true
+		continue_yn.visible = true
+		if (firstTime):
+			yes_selector.visible = true
+		if Input.is_action_just_pressed("shift-paddle"):
+			match counter:
+				0: 
+					selected.play()
+					await get_tree().create_timer(2.0).timeout
+					GlobalData.reset_lives()
+					ScoreManager.reset_player_score()
+					get_tree().reload_current_scene()
+				1:
+					selected.play()
+					await get_tree().create_timer(1.0).timeout
+					get_tree().change_scene_to_file(title_screen)
+		if Input.is_action_just_pressed("mv-direito"):
+			toggle = true
+			change_selector(toggle)
+		elif Input.is_action_just_pressed("mv-esquerdo"):
+			toggle = false
+			change_selector(toggle)
+
+func change_selector(toggle: bool) -> void:
+	firstTime = false
+	if (toggle):
+		counter = 1
+	else:
+		counter = 0
+	match counter:
+		0:
+			select.play()
+			yes_selector.visible = true
+			no_selector.visible = false
+		1:
+			select.play()
+			yes_selector.visible = false
+			no_selector.visible = true
 	
 func buscar_blocos() -> void:
 	# Conta quantos Blocos há na fase

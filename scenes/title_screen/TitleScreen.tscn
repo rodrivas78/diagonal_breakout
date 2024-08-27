@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dkn445bf0vsau" path="res://assets/sprites/title_screen.jpg" id="2_2lpsw"]
 [ext_resource type="Texture2D" uid="uid://dvgrtdfhpla3h" path="res://assets/sprites/green_selector.png" id="3_722on"]
 [ext_resource type="Texture2D" uid="uid://dm1f75ky7drau" path="res://assets/sprites/pink_selector.png" id="4_xffmv"]
-[ext_resource type="AudioStream" uid="uid://cxcycdgjle3xu" path="res://assets/sons/preparation_title.wav" id="5_a77g4"]
+[ext_resource type="AudioStream" uid="uid://dkoulg0dnla5b" path="res://assets/sons/title_music.wav" id="5_q0ro4"]
 [ext_resource type="AudioStream" uid="uid://dhoamcs2myc4j" path="res://assets/sons/click3.wav" id="6_1i7r7"]
 [ext_resource type="AudioStream" uid="uid://bilfd8l1gjt8p" path="res://assets/sons/choosed_item.wav" id="7_oi1ny"]
 
@@ -49,7 +49,7 @@ text = "Title Screen"
 metadata/_edit_use_anchors_ = true
 
 [node name="SomTitleScreen" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_a77g4")
+stream = ExtResource("5_q0ro4")
 volume_db = -2.182
 autoplay = true
 

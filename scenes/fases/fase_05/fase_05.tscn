@@ -31,11 +31,11 @@
 
 [node name="ImagemDeFundo" type="Sprite2D" parent="."]
 position = Vector2(524.5, 301)
-scale = Vector2(0.999047, 1)
 texture = ExtResource("1_gveqe")
 
 [node name="BackGround" type="Sprite2D" parent="."]
 position = Vector2(398.941, 301)
+scale = Vector2(0.994, 0.99)
 texture = ExtResource("2_m5x26")
 
 [node name="Paddle" parent="." instance=ExtResource("2_qaf8o")]
