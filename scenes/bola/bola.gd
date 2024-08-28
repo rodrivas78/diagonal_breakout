@@ -183,7 +183,7 @@ func update_level():
 	print_debug("LEVEL: ", GlobalData.level)
 	print_debug("Stage Counter: ", GlobalData.stageCounter)
 	if (current_scene_name == "Fase10" || current_scene_name == "Fase03" && GlobalData.stageCounter > 1):
-		if (shoudIncreaseLevel):
+		if (GlobalData.shouldIncreaseLevel):
 			GlobalData.increase_level()
 		print_debug("LEVEL: ", GlobalData.level)	
 	match GlobalData.level:

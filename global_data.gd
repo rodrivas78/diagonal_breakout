@@ -4,6 +4,7 @@ extends Node
 var lives = 3
 var level = 0
 var stageCounter = 1
+var shouldIncreaseLevel = true
 
 
 func decrease_lives():

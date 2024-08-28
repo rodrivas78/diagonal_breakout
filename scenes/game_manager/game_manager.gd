@@ -138,7 +138,7 @@ func receber_inputs() -> void:
 					await get_tree().create_timer(2.0).timeout
 					GlobalData.reset_lives()
 					ScoreManager.reset_player_score()
-					ball.shoudIncreaseLevel = false
+					GlobalData.shoudIncreaseLevel = false
 					get_tree().reload_current_scene()
 				1:  #nao continue 
 					selected.play()
@@ -225,6 +225,8 @@ func add_25_points():
 func _on_timer_do_passar_de_fase_timeout():
 	# Carrega a próxima fase
 	GlobalData.increase_stageCounter()
+	GlobalData.shouldIncreaseLevel = true
+	#TODO - implem. GlobalData.shouldIncreaseLevel = true 
 	get_tree().change_scene_to_file(proxima_fase)
 	#res://scenes/fases/fase_02/fase_02.tscn
 	
