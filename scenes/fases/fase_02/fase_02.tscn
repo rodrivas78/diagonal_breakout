@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c3tsnvbmjopsf"]
+[gd_scene load_steps=31 format=3 uid="uid://c3tsnvbmjopsf"]
 
 [ext_resource type="Texture2D" uid="uid://cuk7lthad6lrt" path="res://assets/sprites/hud_bg_alpha.png" id="1_crcji"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_g83dj"]
@@ -26,6 +26,10 @@
 [ext_resource type="Texture2D" uid="uid://ck6tmkl2gip2r" path="res://assets/sprites/_25.png" id="23_1js5i"]
 [ext_resource type="Texture2D" uid="uid://ug5ick6j4aju" path="res://assets/sprites/_50.png" id="24_m2f82"]
 [ext_resource type="Texture2D" uid="uid://c328yss8joxum" path="res://assets/sprites/no_bonus.png" id="25_gp12h"]
+[ext_resource type="Texture2D" uid="uid://ci8qc8ab88nn5" path="res://assets/sprites/overlay1.png" id="27_cls76"]
+[ext_resource type="Texture2D" uid="uid://bjpn2j2bvwvep" path="res://assets/sprites/continue.png" id="28_n0ymo"]
+[ext_resource type="Texture2D" uid="uid://cb1fy6sda6pwm" path="res://assets/sprites/yes_selector.png" id="29_7oo0t"]
+[ext_resource type="Texture2D" uid="uid://b38nof4i4ur2q" path="res://assets/sprites/no_selector.png" id="30_s5xjj"]
 
 [node name="Fase02" type="Node2D"]
 
@@ -35,7 +39,8 @@ scale = Vector2(0.999047, 1)
 texture = ExtResource("1_crcji")
 
 [node name="BackGround" type="Sprite2D" parent="."]
-position = Vector2(398.941, 301)
+position = Vector2(399.941, 301)
+scale = Vector2(0.99, 0.99)
 texture = ExtResource("2_o3egw")
 
 [node name="Paddle" parent="." instance=ExtResource("2_g83dj")]
@@ -48,17 +53,17 @@ position = Vector2(401, 500)
 [node name="Blocos" type="Node2D" parent="."]
 
 [node name="Bloco" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
-position = Vector2(23, 415)
+position = Vector2(23, 413)
 rotation = 1.5708
 game_manager = NodePath("../../GameManager")
 
 [node name="Bloco2" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
-position = Vector2(24, 301)
+position = Vector2(23, 299)
 rotation = -1.5708
 game_manager = NodePath("../../GameManager")
 
 [node name="Bloco3" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
-position = Vector2(218, 21)
+position = Vector2(209, 21)
 game_manager = NodePath("../../GameManager")
 
 [node name="Bloco4" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
@@ -66,56 +71,56 @@ position = Vector2(399, 23)
 game_manager = NodePath("../../GameManager")
 
 [node name="Bloco5" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
-position = Vector2(584, 22)
+position = Vector2(592, 22)
 game_manager = NodePath("../../GameManager")
 
 [node name="Bloco6" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
-position = Vector2(753, 183)
+position = Vector2(753, 185)
 rotation = 1.5708
 game_manager = NodePath("../../GameManager")
 
 [node name="Bloco7" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
-position = Vector2(589, 531)
+position = Vector2(594, 531)
 game_manager = NodePath("../../GameManager")
 
 [node name="Bloco8" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
-position = Vector2(781, 300)
+position = Vector2(781, 299)
 rotation = 1.5708
 game_manager = NodePath("../../GameManager")
 
 [node name="Bloco9" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
-position = Vector2(52, 302)
+position = Vector2(52, 299)
 rotation = 1.5708
 game_manager = NodePath("../../GameManager")
 
 [node name="Bloco10" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
-position = Vector2(27, 189)
+position = Vector2(23, 185)
 rotation = 1.5708
 game_manager = NodePath("../../GameManager")
 
 [node name="Bloco11" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
-position = Vector2(218, 47)
+position = Vector2(209, 47)
 game_manager = NodePath("../../GameManager")
 
 [node name="Bloco12" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
-position = Vector2(407, 555)
+position = Vector2(401, 555)
 game_manager = NodePath("../../GameManager")
 
 [node name="Bloco13" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
-position = Vector2(216, 494)
+position = Vector2(209, 494)
 game_manager = NodePath("../../GameManager")
 
 [node name="Bloco14" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
-position = Vector2(590, 502)
+position = Vector2(595, 502)
 game_manager = NodePath("../../GameManager")
 
 [node name="Bloco15" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
-position = Vector2(782, 184)
+position = Vector2(781, 185)
 rotation = 1.5708
 game_manager = NodePath("../../GameManager")
 
 [node name="Bloco16" parent="Blocos" node_paths=PackedStringArray("game_manager") instance=ExtResource("4_r74yg")]
-position = Vector2(781, 414)
+position = Vector2(781, 413)
 rotation = 1.5708
 game_manager = NodePath("../../GameManager")
 
@@ -272,3 +277,28 @@ texture = ExtResource("24_m2f82")
 visible = false
 position = Vector2(925, 423)
 texture = ExtResource("25_gp12h")
+
+[node name="BkOverlay" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.262745, 0.215686, 1, 0.823529)
+position = Vector2(399.941, 301)
+scale = Vector2(0.994, 0.99)
+texture = ExtResource("27_cls76")
+
+[node name="ContinueYN" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(399.941, 301)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("28_n0ymo")
+
+[node name="YesSelector" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(270.941, 377)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("29_7oo0t")
+
+[node name="NoSelector" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(526.941, 376)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("30_s5xjj")

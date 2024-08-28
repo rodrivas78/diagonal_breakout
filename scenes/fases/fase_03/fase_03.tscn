@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c3t3c8vdaxmx4"]
+[gd_scene load_steps=33 format=3 uid="uid://c3t3c8vdaxmx4"]
 
 [ext_resource type="Texture2D" uid="uid://cuk7lthad6lrt" path="res://assets/sprites/hud_bg_alpha.png" id="1_lqal8"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_7j6u5"]
@@ -30,6 +30,8 @@
 [ext_resource type="Texture2D" uid="uid://bjpn2j2bvwvep" path="res://assets/sprites/continue.png" id="28_355ln"]
 [ext_resource type="Texture2D" uid="uid://cb1fy6sda6pwm" path="res://assets/sprites/yes_selector.png" id="29_rjynn"]
 [ext_resource type="Texture2D" uid="uid://b38nof4i4ur2q" path="res://assets/sprites/no_selector.png" id="30_rf4jk"]
+[ext_resource type="Texture2D" uid="uid://ccs3cddtondty" path="res://assets/sprites/level.png" id="31_ll6ve"]
+[ext_resource type="Texture2D" uid="uid://ijgnyehegeht" path="res://assets/sprites/num_2.png" id="32_tru6k"]
 
 [node name="Fase03" type="Node2D"]
 
@@ -247,3 +249,15 @@ visible = false
 position = Vector2(526.941, 376)
 scale = Vector2(0.7, 0.697)
 texture = ExtResource("30_rf4jk")
+
+[node name="Level" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(326.941, 305)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("31_ll6ve")
+
+[node name="Level_num" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(521.941, 300)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("32_tru6k")

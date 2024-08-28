@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bjtp0rr7hkve8"]
+[gd_scene load_steps=31 format=3 uid="uid://bjtp0rr7hkve8"]
 
 [ext_resource type="Texture2D" uid="uid://cuk7lthad6lrt" path="res://assets/sprites/hud_bg_alpha.png" id="1_n4ryv"]
 [ext_resource type="Texture2D" uid="uid://c6176lmiohhqx" path="res://assets/sprites/bg_verde3.jpg" id="2_ueyj2"]
@@ -26,6 +26,10 @@
 [ext_resource type="Texture2D" uid="uid://ck6tmkl2gip2r" path="res://assets/sprites/_25.png" id="23_u4hv4"]
 [ext_resource type="Texture2D" uid="uid://ug5ick6j4aju" path="res://assets/sprites/_50.png" id="24_mvoe7"]
 [ext_resource type="Texture2D" uid="uid://c328yss8joxum" path="res://assets/sprites/no_bonus.png" id="25_xkcqg"]
+[ext_resource type="Texture2D" uid="uid://ci8qc8ab88nn5" path="res://assets/sprites/overlay1.png" id="27_p6v26"]
+[ext_resource type="Texture2D" uid="uid://bjpn2j2bvwvep" path="res://assets/sprites/continue.png" id="28_mywdc"]
+[ext_resource type="Texture2D" uid="uid://cb1fy6sda6pwm" path="res://assets/sprites/yes_selector.png" id="29_y2f7u"]
+[ext_resource type="Texture2D" uid="uid://b38nof4i4ur2q" path="res://assets/sprites/no_selector.png" id="30_x46q0"]
 
 [node name="Fase12" type="Node2D"]
 
@@ -36,6 +40,7 @@ texture = ExtResource("1_n4ryv")
 
 [node name="BackGround" type="Sprite2D" parent="."]
 position = Vector2(398.941, 301)
+scale = Vector2(0.99, 0.99)
 texture = ExtResource("2_ueyj2")
 
 [node name="Paddle" parent="." instance=ExtResource("2_uu3hq")]
@@ -244,3 +249,28 @@ texture = ExtResource("24_mvoe7")
 visible = false
 position = Vector2(925, 423)
 texture = ExtResource("25_xkcqg")
+
+[node name="BkOverlay" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.262745, 0.215686, 1, 0.823529)
+position = Vector2(399.941, 301)
+scale = Vector2(0.994, 0.99)
+texture = ExtResource("27_p6v26")
+
+[node name="ContinueYN" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(399.941, 301)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("28_mywdc")
+
+[node name="YesSelector" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(270.941, 377)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("29_y2f7u")
+
+[node name="NoSelector" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(526.941, 376)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("30_x46q0")

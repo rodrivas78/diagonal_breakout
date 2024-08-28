@@ -22,11 +22,15 @@ var blocos_na_fase : int = 0
 @onready var bonus_50 = get_node("/root/"+current_scene_name+"/50")
 @onready var no_bonus = get_node("/root/"+current_scene_name+"/NoBonus")
 @onready var ball = get_node("/root/"+current_scene_name+"/Bola")
+@onready var level_label = get_node("/root/"+current_scene_name+"/Level")
+@onready var level_number = get_node("/root/"+current_scene_name+"/Level_num")
 
 @onready var black_overlay = get_node("/root/"+current_scene_name+"/BkOverlay")
 @onready var continue_yn = get_node("/root/"+current_scene_name+"/ContinueYN")
 @onready var yes_selector = get_node("/root/"+current_scene_name+"/YesSelector")
 @onready var no_selector = get_node("/root/"+current_scene_name+"/NoSelector")
+
+
 
 @onready var select : AudioStreamPlayer = $SomSelector
 @onready var selected : AudioStreamPlayer = $SomChoosed
@@ -71,6 +75,7 @@ func _ready():
 	ativa_ou_desativa_paddles()
 	manage_show_stage_number_timer()
 	show_stage_number_sprite()
+	show_level_eligibility()
 	
 
 func _process(delta):
@@ -128,14 +133,16 @@ func receber_inputs() -> void:
 			yes_selector.visible = true
 		if Input.is_action_just_pressed("shift-paddle"):
 			match counter:
-				0: 
+				0:  #continue
 					selected.play()
 					await get_tree().create_timer(2.0).timeout
 					GlobalData.reset_lives()
 					ScoreManager.reset_player_score()
+					ball.shoudIncreaseLevel = false
 					get_tree().reload_current_scene()
-				1:
+				1:  #nao continue 
 					selected.play()
+					GlobalData.reset_ball_speed()
 					await get_tree().create_timer(1.0).timeout
 					get_tree().change_scene_to_file(title_screen)
 		if Input.is_action_just_pressed("mv-direito"):
@@ -217,6 +224,7 @@ func add_25_points():
 	
 func _on_timer_do_passar_de_fase_timeout():
 	# Carrega a próxima fase
+	GlobalData.increase_stageCounter()
 	get_tree().change_scene_to_file(proxima_fase)
 	#res://scenes/fases/fase_02/fase_02.tscn
 	
@@ -245,4 +253,17 @@ func show_stage_number_sprite():
 func _on_timer_timeout():
 	stage_node.visible = false
 	stage_number.visible = false
+
+func show_level_eligibility():
+	if (current_scene_name == "Fase10" || current_scene_name == "Fase03" && GlobalData.stageCounter > 1):
+		show_level_label()
+	
+func show_level_label():
+	black_overlay.visible = true
+	level_label.visible = true
+	level_number.visible = true
+	await get_tree().create_timer(2.6).timeout
+	black_overlay.visible = false
+	level_label.visible = false
+	level_number.visible = false
 

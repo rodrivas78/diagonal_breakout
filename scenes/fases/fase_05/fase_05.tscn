@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://babyn4rnn5xve"]
+[gd_scene load_steps=31 format=3 uid="uid://babyn4rnn5xve"]
 
 [ext_resource type="Texture2D" uid="uid://bgg12yqad5t7l" path="res://assets/sprites/campo-roxo_hud9_2.png" id="1_gveqe"]
 [ext_resource type="Texture2D" uid="uid://cwvbtpxwj8kbc" path="res://assets/sprites/bg_verde2.jpg" id="2_m5x26"]
@@ -26,6 +26,10 @@
 [ext_resource type="Texture2D" uid="uid://ck6tmkl2gip2r" path="res://assets/sprites/_25.png" id="23_8726v"]
 [ext_resource type="Texture2D" uid="uid://ug5ick6j4aju" path="res://assets/sprites/_50.png" id="24_55xjm"]
 [ext_resource type="Texture2D" uid="uid://c328yss8joxum" path="res://assets/sprites/no_bonus.png" id="25_3hg70"]
+[ext_resource type="Texture2D" uid="uid://ci8qc8ab88nn5" path="res://assets/sprites/overlay1.png" id="27_fls5b"]
+[ext_resource type="Texture2D" uid="uid://bjpn2j2bvwvep" path="res://assets/sprites/continue.png" id="28_wx4yh"]
+[ext_resource type="Texture2D" uid="uid://cb1fy6sda6pwm" path="res://assets/sprites/yes_selector.png" id="29_lu8wo"]
+[ext_resource type="Texture2D" uid="uid://b38nof4i4ur2q" path="res://assets/sprites/no_selector.png" id="30_4sx4c"]
 
 [node name="Fase05" type="Node2D"]
 
@@ -216,3 +220,28 @@ texture = ExtResource("24_55xjm")
 visible = false
 position = Vector2(925, 423)
 texture = ExtResource("25_3hg70")
+
+[node name="BkOverlay" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.262745, 0.215686, 1, 0.823529)
+position = Vector2(399.941, 301)
+scale = Vector2(0.994, 0.99)
+texture = ExtResource("27_fls5b")
+
+[node name="ContinueYN" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(399.941, 301)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("28_wx4yh")
+
+[node name="YesSelector" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(270.941, 377)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("29_lu8wo")
+
+[node name="NoSelector" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(526.941, 376)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("30_4sx4c")

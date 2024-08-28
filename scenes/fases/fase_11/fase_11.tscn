@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://capwiu7qgd8pe"]
+[gd_scene load_steps=31 format=3 uid="uid://capwiu7qgd8pe"]
 
 [ext_resource type="Texture2D" uid="uid://cuk7lthad6lrt" path="res://assets/sprites/hud_bg_alpha.png" id="1_1olmu"]
 [ext_resource type="Texture2D" uid="uid://c7peduwr68jax" path="res://assets/sprites/bg_roxol2.jpg" id="2_pso8t"]
@@ -26,6 +26,10 @@
 [ext_resource type="Texture2D" uid="uid://ck6tmkl2gip2r" path="res://assets/sprites/_25.png" id="23_kxnqp"]
 [ext_resource type="Texture2D" uid="uid://ug5ick6j4aju" path="res://assets/sprites/_50.png" id="24_xmrj2"]
 [ext_resource type="Texture2D" uid="uid://c328yss8joxum" path="res://assets/sprites/no_bonus.png" id="25_h124o"]
+[ext_resource type="Texture2D" uid="uid://ci8qc8ab88nn5" path="res://assets/sprites/overlay1.png" id="27_qnklm"]
+[ext_resource type="Texture2D" uid="uid://bjpn2j2bvwvep" path="res://assets/sprites/continue.png" id="28_ub3md"]
+[ext_resource type="Texture2D" uid="uid://cb1fy6sda6pwm" path="res://assets/sprites/yes_selector.png" id="29_8c1tg"]
+[ext_resource type="Texture2D" uid="uid://b38nof4i4ur2q" path="res://assets/sprites/no_selector.png" id="30_dyc2s"]
 
 [node name="Fase11" type="Node2D"]
 
@@ -35,7 +39,8 @@ scale = Vector2(0.999047, 1)
 texture = ExtResource("1_1olmu")
 
 [node name="BackGround" type="Sprite2D" parent="."]
-position = Vector2(398.941, 301)
+position = Vector2(399.941, 301)
+scale = Vector2(0.99, 0.99)
 texture = ExtResource("2_pso8t")
 
 [node name="Paddle" parent="." instance=ExtResource("2_xwxy1")]
@@ -227,3 +232,28 @@ texture = ExtResource("24_xmrj2")
 visible = false
 position = Vector2(925, 423)
 texture = ExtResource("25_h124o")
+
+[node name="BkOverlay" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.262745, 0.215686, 1, 0.823529)
+position = Vector2(399.941, 301)
+scale = Vector2(0.994, 0.99)
+texture = ExtResource("27_qnklm")
+
+[node name="ContinueYN" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(399.941, 301)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("28_ub3md")
+
+[node name="YesSelector" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(270.941, 377)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("29_8c1tg")
+
+[node name="NoSelector" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(526.941, 376)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("30_dyc2s")

@@ -27,6 +27,7 @@ var posicao_inicial : Vector2 = Vector2(403, 500)
 var direcao_inicial : Vector2 = Vector2(0, 0)
 var nova_direcao : Vector2 = Vector2(0, 0)
 var hasDied : bool = false
+var shoudIncreaseLevel: bool = true
 
 # Limites da Bola
 var x_minimo : float = 0
@@ -74,7 +75,6 @@ func movimentar_bola(delta : float) -> void:
 	# Movimenta a Bola com base em sua nova direção
 	position += nova_direcao * velocidade_da_bola * delta
 	
-
 func verificar_posicao_da_bola() -> void:
 	# Se a Bola estiver dentro da tela, a rebate ao colidir com as bordas
 	if position.y <= y_maximo:
@@ -180,11 +180,12 @@ func update_lives_monitor():
 			#que ativa um método dentro de _process
 			
 func update_level():
-	if (current_scene_name == "Fase10" || current_scene_name == "Fase03"):
-		GlobalData.increase_level()
-		#velocidade_da_bola += 100.0
-		#TODO - melhorar esta lógica
-		print_debug("LEVEL: ", GlobalData.level)
+	print_debug("LEVEL: ", GlobalData.level)
+	print_debug("Stage Counter: ", GlobalData.stageCounter)
+	if (current_scene_name == "Fase10" || current_scene_name == "Fase03" && GlobalData.stageCounter > 1):
+		if (shoudIncreaseLevel):
+			GlobalData.increase_level()
+		print_debug("LEVEL: ", GlobalData.level)	
 	match GlobalData.level:
 		1:
 			velocidade_da_bola = 400.0
@@ -198,20 +199,17 @@ func update_level():
 			velocidade_da_bola = 800.0
 		6:
 			velocidade_da_bola = 900.0
-		
-	print_debug("velocidade da bola", velocidade_da_bola)
-		#TODO - show "level 2" on screen
-		#por na cena da fase
-		#consultar qual o level em globalData
-		#no inicio da fase 10 e etc
-		#ou adicionar variavel que mostre o LEVEL 
-		#na tela pelo gameManager.
-		#Fazer um ou || neste if que ele o level.
-		#por nele as outras fases que
-		#fazer um switch de de acordo com o level
-		#soma a velocidade da bola += 100.0
-		#talvez por a velocidade da bola 
-		#em GlobalData 
+		7:
+			velocidade_da_bola = 1000.0
+		8: 
+			velocidade_da_bola = 1100.0
+		9: 
+			velocidade_da_bola = 1200.0	
+		10:
+			velocidade_da_bola = 1300.0
+	if (GlobalData.level > 10):
+		velocidade_da_bola = 1400.0
+	print_debug("velocidade_bola: ", velocidade_da_bola)
 
 func gameOver():
 	# Exibir a tela de game over ou realizar outra ação
