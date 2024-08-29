@@ -38,7 +38,7 @@ volume_db = -19.014
 
 [node name="SomGameOver" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_tvmti")
-volume_db = -9.11
+volume_db = -7.976
 
 [node name="GameOverMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_o2l1n")
