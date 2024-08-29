@@ -63,12 +63,6 @@ var firstTime = true
 var counter = 0
 var toggle = false
 
-#func enter():
-	##get_tree().change_scene_to_file(first_stage)
-	##timer_do_passar_de_fase.start()
-	##get_tree().reload_current_scene()
-	#print_debug("dentro de entrar")
-	#pass
 	
 func _ready():
 	buscar_blocos()
@@ -77,7 +71,6 @@ func _ready():
 	show_stage_number_sprite()
 	show_level_eligibility()
 	
-
 func _process(delta):
 	receber_inputs()
 	
@@ -138,7 +131,6 @@ func receber_inputs() -> void:
 					await get_tree().create_timer(2.0).timeout
 					GlobalData.reset_lives()
 					ScoreManager.reset_player_score()
-					#GlobalData.shoudIncreaseLevel = false
 					GlobalData.toggle_shouldIncreaseLevel(false)
 					get_tree().reload_current_scene()
 				1:  #nao continue 
