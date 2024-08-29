@@ -24,3 +24,6 @@ func increase_stageCounter():
 
 func reset_stageCounter():
 	stageCounter = 1
+
+func toggle_shouldIncreaseLevel(new_value: bool):
+	shouldIncreaseLevel = new_value

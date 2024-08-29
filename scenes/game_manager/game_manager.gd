@@ -138,11 +138,11 @@ func receber_inputs() -> void:
 					await get_tree().create_timer(2.0).timeout
 					GlobalData.reset_lives()
 					ScoreManager.reset_player_score()
-					GlobalData.shoudIncreaseLevel = false
+					#GlobalData.shoudIncreaseLevel = false
+					GlobalData.toggle_shouldIncreaseLevel(false)
 					get_tree().reload_current_scene()
 				1:  #nao continue 
 					selected.play()
-					GlobalData.reset_ball_speed()
 					await get_tree().create_timer(1.0).timeout
 					get_tree().change_scene_to_file(title_screen)
 		if Input.is_action_just_pressed("mv-direito"):
@@ -226,9 +226,7 @@ func _on_timer_do_passar_de_fase_timeout():
 	# Carrega a próxima fase
 	GlobalData.increase_stageCounter()
 	GlobalData.shouldIncreaseLevel = true
-	#TODO - implem. GlobalData.shouldIncreaseLevel = true 
 	get_tree().change_scene_to_file(proxima_fase)
-	#res://scenes/fases/fase_02/fase_02.tscn
 	
 func ativa_ou_desativa_paddles() -> void:
 	if diagonalA.visible == true:

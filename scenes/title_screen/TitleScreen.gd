@@ -34,6 +34,7 @@ func receber_inputs() -> void:
 				GlobalData.reset_lives()
 				ScoreManager.reset_player_score()
 				GlobalData.reset_level()
+				GlobalData.reset_stageCounter()
 				get_tree().change_scene_to_file(primeira_fase)
 			1: 
 				selected.play()

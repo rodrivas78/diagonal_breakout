@@ -12,6 +12,7 @@ extends Area2D
 
 @onready var current_scene_name = get_tree().current_scene.name
 
+@onready var ball = get_node("/root/"+current_scene_name+"/Bola")
 @onready var game_manager = get_node("/root/"+current_scene_name+"/GameManager")
 @onready var barra_verde = get_node("/root/"+current_scene_name+"/greenBar")
 @onready var barra_amarela = get_node("/root/"+current_scene_name+"/yellowBar")
@@ -62,6 +63,8 @@ func _process(delta):
 	
 func resetar_bola() -> void:
 	# Posiciona a Bola acima do Paddle
+	if GlobalData.lives <= 0:
+		ball.visible = false
 	position = posicao_inicial
 	
 
@@ -216,7 +219,6 @@ func gameOver():
 	await get_tree().create_timer(1.0).timeout
 	som_game_over.play()
 	game_over.visible = true
-	#get_tree().paused = true
 	velocidade_da_bola = 0.0
 	
 	await get_tree().create_timer(2.0).timeout
