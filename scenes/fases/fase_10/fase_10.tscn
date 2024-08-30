@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://b2vmhs2i86i2i"]
+[gd_scene load_steps=34 format=3 uid="uid://b2vmhs2i86i2i"]
 
 [ext_resource type="Texture2D" uid="uid://cuk7lthad6lrt" path="res://assets/sprites/hud_bg_alpha.png" id="1_3h0b5"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_u7q1d"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://b38nof4i4ur2q" path="res://assets/sprites/no_selector.png" id="30_f8lpy"]
 [ext_resource type="Texture2D" uid="uid://ccs3cddtondty" path="res://assets/sprites/level.png" id="31_7t1fg"]
 [ext_resource type="Texture2D" uid="uid://ijgnyehegeht" path="res://assets/sprites/num_2.png" id="32_yeg22"]
+[ext_resource type="Script" path="res://scenes/stage/stage_label.gd" id="33_lm2g7"]
 
 [node name="Fase10" type="Node2D"]
 
@@ -169,6 +170,7 @@ position = Vector2(962, 69)
 texture = ExtResource("12_nhkbm")
 
 [node name="VidroSup2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(925, 68.5)
 scale = Vector2(0.855856, 0.696721)
 texture = ExtResource("13_6epyv")
@@ -184,6 +186,7 @@ position = Vector2(924, 425)
 texture = ExtResource("15_ox3ow")
 
 [node name="VidroInf2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(924.5, 433)
 scale = Vector2(0.944186, 0.976271)
 texture = ExtResource("16_30kpy")
@@ -276,3 +279,17 @@ visible = false
 position = Vector2(521.941, 300)
 scale = Vector2(0.7, 0.697)
 texture = ExtResource("32_yeg22")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+script = ExtResource("33_lm2g7")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2"]
+anchors_preset = -1
+anchor_right = 0.0495238
+offset_left = 846.0
+offset_top = 417.0
+offset_right = 956.0
+offset_bottom = 470.0
+bbcode_enabled = true
+text = "STAGE"
+metadata/_edit_use_anchors_ = true

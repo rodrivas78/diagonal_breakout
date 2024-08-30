@@ -12,7 +12,7 @@ var blocos_na_fase : int = 0
 @onready var timer_do_passar_de_fase : Timer = $TimerDoPassarDeFase
 
 @onready var current_scene_name = get_tree().current_scene.name
-@onready var score_label = get_node("/root/"+current_scene_name+"/CanvasLayer")
+@onready var score_label = get_node("/root/"+current_scene_name+"/CanvasLayer2")
 @onready var barra_verde = get_node("/root/"+current_scene_name+"/greenBar")
 @onready var barra_amarela = get_node("/root/"+current_scene_name+"/yellowBar")
 @onready var perfect = get_node("/root/"+current_scene_name+"/Perfect")
@@ -30,12 +30,6 @@ var blocos_na_fase : int = 0
 @onready var yes_selector = get_node("/root/"+current_scene_name+"/YesSelector")
 @onready var no_selector = get_node("/root/"+current_scene_name+"/NoSelector")
 
-
-
-@onready var select : AudioStreamPlayer = $SomSelector
-@onready var selected : AudioStreamPlayer = $SomChoosed
-
-#@onready var first_stage = "res://scenes/fases/fase_01/fase_01.tscn"
 var title_screen : String = "res://scenes/title_screen/TitleScreen.tscn"
 
 #Controle dos bumpers
@@ -50,6 +44,8 @@ var iY : int = 1
 @export var jump_positions = Vector2i(xPosition[iX], yPosition[iY])
 var current_jump_index = 0
 
+@onready var select : AudioStreamPlayer = $SomSelector
+@onready var selected : AudioStreamPlayer = $SomChoosed
 @onready var point_sound : AudioStreamPlayer = $SomBonusPoints
 @onready var level_completed_sound : AudioStreamPlayer = $SomLevelCompleted
 @onready var perfect_sound : AudioStreamPlayer = $SomPerfect
@@ -62,6 +58,7 @@ var gameOver = false
 var firstTime = true
 var counter = 0
 var toggle = false
+var turnOnFadeOut = false
 
 	
 func _ready():
@@ -74,7 +71,6 @@ func _ready():
 func _process(delta):
 	receber_inputs()
 	
-
 func receber_inputs() -> void:
 	# Reinicia a fase
 	jump_positions = Vector2i(xPosition[iX], yPosition[iY])
@@ -128,6 +124,7 @@ func receber_inputs() -> void:
 			match counter:
 				0:  #continue
 					selected.play()
+					ball.turnOnFadeOut = true
 					await get_tree().create_timer(2.0).timeout
 					GlobalData.reset_lives()
 					ScoreManager.reset_player_score()
@@ -135,6 +132,7 @@ func receber_inputs() -> void:
 					get_tree().reload_current_scene()
 				1:  #nao continue 
 					selected.play()
+					ball.turnOnFadeOut = true
 					await get_tree().create_timer(1.0).timeout
 					get_tree().change_scene_to_file(title_screen)
 		if Input.is_action_just_pressed("mv-direito"):
@@ -233,18 +231,11 @@ func manage_show_stage_number_timer():
 	timer_node.connect("timeout", _on_timer_timeout)
 	
 func show_stage_number_sprite():
-	var scene_name = get_tree().current_scene.name
-	#var scene_number_str = scene_name.trim_prefix("Fase")
-	stage_node = get_node("/root/" + scene_name + "/Stage")
-	stage_number = get_node("/root/" + scene_name + "/StageNum")
-	stage_node.visible = true
-	stage_number.visible = true
-	# Inicia um temporizador de 3 segundos
+	score_label.visible = true
 	timer_node.start(3.0)
 
 func _on_timer_timeout():
-	stage_node.visible = false
-	stage_number.visible = false
+	score_label.visible = false
 
 func show_level_eligibility():
 	if (current_scene_name == "Fase10" || current_scene_name == "Fase03" && GlobalData.stageCounter > 1):
@@ -258,4 +249,3 @@ func show_level_label():
 	black_overlay.visible = false
 	level_label.visible = false
 	level_number.visible = false
-

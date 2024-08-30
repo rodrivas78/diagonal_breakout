@@ -29,6 +29,7 @@ var direcao_inicial : Vector2 = Vector2(0, 0)
 var nova_direcao : Vector2 = Vector2(0, 0)
 var hasDied : bool = false
 var shoudIncreaseLevel: bool = true
+var turnOnFadeOut = false
 
 # Limites da Bola
 var x_minimo : float = 0
@@ -59,6 +60,7 @@ func _process(delta):
 			
 	movimentar_bola(delta)
 	verificar_posicao_da_bola()
+	set_music_fade_out()
 	
 	
 func resetar_bola() -> void:
@@ -179,7 +181,7 @@ func update_lives_monitor():
 		0:
 			watch_out.visible = false
 			gameOver()
-			#todo - transfomrr gameOver em um boolean
+			#todo - transfomar gameOver em um boolean
 			#que ativa um método dentro de _process
 			
 func update_level():
@@ -224,6 +226,10 @@ func gameOver():
 	await get_tree().create_timer(2.0).timeout
 	game_manager.gameOver = true
 	game_over_music.play()
-	#TODO - Display: Continue or Quit? 
-	#if quit go to main menu
-	#get_tree().quit()		
+
+func set_music_fade_out() -> void:
+	# Diminui o volume da música em 1 dB a cada intervalo de tempo
+	if (turnOnFadeOut):
+		game_over_music.set_volume_db(game_over_music.volume_db - 0.3)
+		if game_over_music.volume_db <= -80:
+			game_over_music.stop()

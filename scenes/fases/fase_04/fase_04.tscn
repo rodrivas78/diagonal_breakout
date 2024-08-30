@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cwd28y2ehx57n"]
+[gd_scene load_steps=32 format=3 uid="uid://cwd28y2ehx57n"]
 
 [ext_resource type="Texture2D" uid="uid://cuk7lthad6lrt" path="res://assets/sprites/hud_bg_alpha.png" id="1_mpkl2"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_eexyb"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://bjpn2j2bvwvep" path="res://assets/sprites/continue.png" id="28_5gmuo"]
 [ext_resource type="Texture2D" uid="uid://cb1fy6sda6pwm" path="res://assets/sprites/yes_selector.png" id="29_ovhsf"]
 [ext_resource type="Texture2D" uid="uid://b38nof4i4ur2q" path="res://assets/sprites/no_selector.png" id="30_bpv03"]
+[ext_resource type="Script" path="res://scenes/stage/stage_label.gd" id="31_7vgxb"]
 
 [node name="Fase04" type="Node2D"]
 
@@ -247,3 +248,17 @@ visible = false
 position = Vector2(526.941, 376)
 scale = Vector2(0.7, 0.697)
 texture = ExtResource("30_bpv03")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+script = ExtResource("31_7vgxb")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2"]
+anchors_preset = -1
+anchor_right = 0.0495238
+offset_left = 856.0
+offset_top = 417.0
+offset_right = 966.0
+offset_bottom = 470.0
+bbcode_enabled = true
+text = "STAGE"
+metadata/_edit_use_anchors_ = true
