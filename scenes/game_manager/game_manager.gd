@@ -22,8 +22,8 @@ var blocos_na_fase : int = 0
 @onready var bonus_50 = get_node("/root/"+current_scene_name+"/50")
 @onready var no_bonus = get_node("/root/"+current_scene_name+"/NoBonus")
 @onready var ball = get_node("/root/"+current_scene_name+"/Bola")
-@onready var level_label = get_node("/root/"+current_scene_name+"/Level")
-@onready var level_number = get_node("/root/"+current_scene_name+"/Level_num")
+@onready var level_label = get_node("/root/"+current_scene_name+"/CanvasLayer3")
+#@onready var level_number = get_node("/root/"+current_scene_name+"/Level_num")
 
 @onready var black_overlay = get_node("/root/"+current_scene_name+"/BkOverlay")
 @onready var continue_yn = get_node("/root/"+current_scene_name+"/ContinueYN")
@@ -238,14 +238,13 @@ func _on_timer_timeout():
 	score_label.visible = false
 
 func show_level_eligibility():
-	if (current_scene_name == "Fase10" || current_scene_name == "Fase03" && GlobalData.stageCounter > 1):
+	if (current_scene_name == "Fase10" || current_scene_name == "Fase03"):
 		show_level_label()
 	
 func show_level_label():
 	black_overlay.visible = true
 	level_label.visible = true
-	level_number.visible = true
 	await get_tree().create_timer(2.6).timeout
 	black_overlay.visible = false
 	level_label.visible = false
-	level_number.visible = false
+

@@ -185,12 +185,12 @@ func update_lives_monitor():
 			#que ativa um método dentro de _process
 			
 func update_level():
-	print_debug("LEVEL: ", GlobalData.level)
-	print_debug("Stage Counter: ", GlobalData.stageCounter)
+	#print_debug("LEVEL: ", GlobalData.level)
+	#print_debug("Stage Counter: ", GlobalData.stageCounter)
 	if (current_scene_name == "Fase10" || current_scene_name == "Fase03" && GlobalData.stageCounter > 1):
 		if (GlobalData.shouldIncreaseLevel):
 			GlobalData.increase_level()
-		print_debug("LEVEL: ", GlobalData.level)	
+		#print_debug("LEVEL: ", GlobalData.level)	
 	match GlobalData.level:
 		1:
 			velocidade_da_bola = 400.0
@@ -214,7 +214,7 @@ func update_level():
 			velocidade_da_bola = 1300.0
 	if (GlobalData.level > 10):
 		velocidade_da_bola = 1400.0
-	print_debug("velocidade_bola: ", velocidade_da_bola)
+	#print_debug("velocidade_bola: ", velocidade_da_bola)
 
 func gameOver():
 	# Exibir a tela de game over ou realizar outra ação
