@@ -181,8 +181,6 @@ func update_lives_monitor():
 		0:
 			watch_out.visible = false
 			gameOver()
-			#todo - transfomar gameOver em um boolean
-			#que ativa um método dentro de _process
 			
 func update_level():
 	#print_debug("LEVEL: ", GlobalData.level)
