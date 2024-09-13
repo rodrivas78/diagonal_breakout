@@ -10,6 +10,8 @@ var counter = 0
 @onready var selector1 = get_node("/root/"+current_scene_name+"/selector")
 @onready var selector2 = get_node("/root/"+current_scene_name+"/selector2")
 @onready var selector3 = get_node("/root/"+current_scene_name+"/selector3")
+@onready var selector4 = get_node("/root/"+current_scene_name+"/selector4")
+@onready var selector5 = get_node("/root/"+current_scene_name+"/selector5")
 
 @onready var titleMusic : AudioStreamPlayer = $SomTitleScreen
 @onready var select : AudioStreamPlayer = $SomSelector
@@ -37,10 +39,19 @@ func receber_inputs() -> void:
 				GlobalData.reset_stageCounter()
 				get_tree().change_scene_to_file(primeira_fase)
 			1: 
+				#TODO - mostrar control
 				selected.play()
 				await get_tree().create_timer(1.0).timeout
 				get_tree().change_scene_to_file(primeira_fase)
 			2:
+				selected.play()
+				await get_tree().create_timer(1.0).timeout
+				get_tree().quit()
+			3:
+				selected.play()
+				await get_tree().create_timer(1.0).timeout
+				get_tree().quit()
+			4:
 				selected.play()
 				await get_tree().create_timer(1.0).timeout
 				get_tree().quit()
@@ -58,24 +69,45 @@ func change_selector(add: bool) -> void:
 	else :
 		counter -= 1
 	if counter < 0:
-		counter = 2
-	counter = counter % 3
+		counter = 4
+	counter = counter % 5
+
 	match counter:
 		0: 
 			select.play()
 			selector1.visible = true
 			selector2.visible = false
 			selector3.visible = false
+			selector4.visible = false
+			selector5.visible = false
 		1: 
 			select.play()
 			selector1.visible = false
 			selector2.visible = true
 			selector3.visible = false
+			selector4.visible = false
+			selector5.visible = false
 		2: 
 			select.play()
 			selector1.visible = false
 			selector2.visible = false
 			selector3.visible = true
+			selector4.visible = false
+			selector5.visible = false
+		3: 
+			select.play()
+			selector1.visible = false
+			selector2.visible = false
+			selector3.visible = false
+			selector4.visible = true
+			selector5.visible = false
+		4: 
+			select.play()
+			selector1.visible = false
+			selector2.visible = false
+			selector3.visible = false
+			selector4.visible = false
+			selector5.visible = true
 
 func set_music_fade_out() -> void:
 	# Diminui o volume da música em 1 dB a cada intervalo de tempo

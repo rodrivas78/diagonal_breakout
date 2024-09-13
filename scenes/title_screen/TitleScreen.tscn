@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bd4iqkqvqr738"]
 
 [ext_resource type="Script" path="res://scenes/title_screen/TitleScreen.gd" id="1_of714"]
-[ext_resource type="Texture2D" uid="uid://dkn445bf0vsau" path="res://assets/sprites/title_screen.jpg" id="2_2lpsw"]
-[ext_resource type="Texture2D" uid="uid://dvgrtdfhpla3h" path="res://assets/sprites/green_selector.png" id="3_722on"]
-[ext_resource type="Texture2D" uid="uid://dm1f75ky7drau" path="res://assets/sprites/pink_selector.png" id="4_xffmv"]
+[ext_resource type="Texture2D" uid="uid://ml8xltcfhh64" path="res://assets/sprites/new_title_screen.jpg" id="2_0ga70"]
+[ext_resource type="Texture2D" uid="uid://boiqxnbor50jq" path="res://assets/sprites/new_green_selector.png" id="3_uvhg7"]
+[ext_resource type="Texture2D" uid="uid://dkp06arfwn2jx" path="res://assets/sprites/new_pink_selector.png" id="4_rb8m5"]
 [ext_resource type="AudioStream" uid="uid://dkoulg0dnla5b" path="res://assets/sons/title_music.wav" id="5_q0ro4"]
 [ext_resource type="AudioStream" uid="uid://dhoamcs2myc4j" path="res://assets/sons/click3.wav" id="6_1i7r7"]
 [ext_resource type="AudioStream" uid="uid://bilfd8l1gjt8p" path="res://assets/sons/choosed_item.wav" id="7_oi1ny"]
@@ -14,24 +14,36 @@ script = ExtResource("1_of714")
 [node name="ImagemDeFundo" type="Sprite2D" parent="."]
 position = Vector2(524.5, 299)
 scale = Vector2(0.999047, 1)
-texture = ExtResource("2_2lpsw")
+texture = ExtResource("2_0ga70")
 
 [node name="selector" type="Sprite2D" parent="."]
-position = Vector2(870.5, 181)
+position = Vector2(847.5, 82)
 scale = Vector2(0.999047, 1)
-texture = ExtResource("3_722on")
+texture = ExtResource("3_uvhg7")
 
 [node name="selector2" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(870.5, 297)
+position = Vector2(849.5, 179)
 scale = Vector2(0.999047, 1)
-texture = ExtResource("4_xffmv")
+texture = ExtResource("4_rb8m5")
 
 [node name="selector3" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(870.5, 418)
+position = Vector2(849.5, 289)
 scale = Vector2(0.999047, 1)
-texture = ExtResource("4_xffmv")
+texture = ExtResource("4_rb8m5")
+
+[node name="selector4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(849.5, 401)
+scale = Vector2(0.999047, 1)
+texture = ExtResource("4_rb8m5")
+
+[node name="selector5" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(849.5, 513)
+scale = Vector2(0.999047, 1)
+texture = ExtResource("4_rb8m5")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
