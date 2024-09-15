@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cuk7lthad6lrt" path="res://assets/sprites/hud_bg_alpha.png" id="1_jl8yf"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_dmrfi"]
-[ext_resource type="Texture2D" uid="uid://bec7ou2nd2vqc" path="res://assets/sprites/bg_roxol1.jpg" id="2_nm4aj"]
+[ext_resource type="Texture2D" uid="uid://cgf74imdv6j8s" path="res://assets/sprites/bg_rosa_inv2.jpg" id="2_v58bx"]
 [ext_resource type="PackedScene" uid="uid://h17w5q1iroht" path="res://scenes/bola/bola.tscn" id="3_u1yb3"]
 [ext_resource type="PackedScene" uid="uid://dh5rpeuhfoqpk" path="res://scenes/bloco/bloco.tscn" id="4_kyibe"]
 [ext_resource type="PackedScene" uid="uid://74yx6akk6vh3" path="res://scenes/game_manager/game_manager.tscn" id="5_48w2d"]
@@ -32,7 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://b38nof4i4ur2q" path="res://assets/sprites/no_selector.png" id="30_el27x"]
 [ext_resource type="Script" path="res://scenes/stage/stage_label.gd" id="31_butcc"]
 
-[node name="Fase07" type="Node2D"]
+[node name="Fase06" type="Node2D"]
 
 [node name="ImagemDeFundo" type="Sprite2D" parent="."]
 position = Vector2(524.5, 301)
@@ -40,9 +40,9 @@ scale = Vector2(0.999047, 1)
 texture = ExtResource("1_jl8yf")
 
 [node name="BackGround" type="Sprite2D" parent="."]
-position = Vector2(399.941, 301)
-scale = Vector2(0.995, 0.999)
-texture = ExtResource("2_nm4aj")
+position = Vector2(399.941, 300)
+scale = Vector2(0.993, 0.993)
+texture = ExtResource("2_v58bx")
 
 [node name="Paddle" parent="." instance=ExtResource("2_dmrfi")]
 visible = false

@@ -109,6 +109,7 @@ wait_time = 3.226
 one_shot = true
 
 [node name="Borda6" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(401, 300)
 scale = Vector2(1.05, 1.05)
 texture = ExtResource("6_yenxw")
