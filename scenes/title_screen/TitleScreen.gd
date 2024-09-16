@@ -43,20 +43,20 @@ func receber_inputs() -> void:
 				GlobalData.reset_stageCounter()
 				get_tree().change_scene_to_file(primeira_fase)
 			1: 
-				#TODO - mostrar control
-				selected.play()
+				if selector_activated:
+					selected.play()
 				controls_screen.visible = true 
 				selector2.visible = false
 				selector_activated = false
 			2:
-				#TODO - mostrar instrucoes
-				selected.play()
+				if selector_activated:
+					selected.play()
 				instructions_screen.visible = true 
 				selector3.visible = false
 				selector_activated = false
 			3:
-				#TODO - mostrar about
-				selected.play()
+				if selector_activated:
+					selected.play()
 				about_screen.visible = true 
 				selector4.visible = false
 				selector_activated = false

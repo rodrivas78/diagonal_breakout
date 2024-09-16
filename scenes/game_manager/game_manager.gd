@@ -23,7 +23,6 @@ var blocos_na_fase : int = 0
 @onready var no_bonus = get_node("/root/"+current_scene_name+"/NoBonus")
 @onready var ball = get_node("/root/"+current_scene_name+"/Bola")
 @onready var level_label = get_node("/root/"+current_scene_name+"/CanvasLayer3")
-#@onready var level_number = get_node("/root/"+current_scene_name+"/Level_num")
 
 @onready var black_overlay = get_node("/root/"+current_scene_name+"/BkOverlay")
 @onready var continue_yn = get_node("/root/"+current_scene_name+"/ContinueYN")
@@ -72,20 +71,19 @@ func _process(delta):
 	receber_inputs()
 	
 func receber_inputs() -> void:
-	# Reinicia a fase
 	jump_positions = Vector2i(xPosition[iX], yPosition[iY])
 	diagonalA.position = jump_positions
 	diagonalB.position = jump_positions
-	if Input.is_action_just_pressed("nextStage"):
-		print_debug("is_action_just_pressed(nextStage)")
-		timer_do_passar_de_fase.start()
-	if Input.is_action_just_pressed("reiniciar"):
-		#TODO - Continue -> YES
-		GlobalData.reset_lives()
-		get_tree().reload_current_scene()
+	#if Input.is_action_just_pressed("nextStage"):
+		#print_debug("is_action_just_pressed(nextStage)")
+		#timer_do_passar_de_fase.start()
+	#if Input.is_action_just_pressed("reiniciar"):
+		##TODO - Continue -> YES
+		#GlobalData.reset_lives()
+		#get_tree().reload_current_scene()
 	# Sai do jogo
 	if Input.is_action_just_pressed("sair"):
-		get_tree().quit()
+		get_tree().change_scene_to_file(title_screen)
 	#alterna rebatedores
 	# Verifique se a tecla "espaço" foi pressionada
 	if Input.is_action_just_pressed("shift-paddle"):
@@ -98,21 +96,18 @@ func receber_inputs() -> void:
 	# movimenta os paddles
 	if Input.is_action_just_pressed("mv-esquerdo"):
 		if iX > 0:
-			iX -= 1
-			
+			iX -= 1		
 	elif Input.is_action_just_pressed("mv-direito"):
 		if iX < 2:
 			iX += 1
-			
 	elif Input.is_action_just_pressed("mv-baixo"):
 		if iY < 2:
 			iY += 1
-			
 	elif Input.is_action_just_pressed("mv-cima"):
 		if iY > 0:
 			iY -= 1	
 						
-	#todo - implementar gameOver
+	#implementa gameOver
 	if (gameOver):
 		diagonalA.visible = false
 		diagonalB.visible = false
