@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="breakout-na-godot"
+config/name="QuadraBreak"
 run/main_scene="res://scenes/title_screen/TitleScreen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://qb_icon.svg"
 
 [autoload]
 
