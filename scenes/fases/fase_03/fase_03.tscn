@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c3t3c8vdaxmx4"]
+[gd_scene load_steps=35 format=3 uid="uid://c3t3c8vdaxmx4"]
 
 [ext_resource type="Texture2D" uid="uid://cuk7lthad6lrt" path="res://assets/sprites/hud_bg_alpha.png" id="1_lqal8"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_7j6u5"]
@@ -26,17 +26,24 @@
 [ext_resource type="Texture2D" uid="uid://ck6tmkl2gip2r" path="res://assets/sprites/_25.png" id="23_466pn"]
 [ext_resource type="Texture2D" uid="uid://ug5ick6j4aju" path="res://assets/sprites/_50.png" id="24_sbfqd"]
 [ext_resource type="Texture2D" uid="uid://c328yss8joxum" path="res://assets/sprites/no_bonus.png" id="25_of4ca"]
+[ext_resource type="Texture2D" uid="uid://ci8qc8ab88nn5" path="res://assets/sprites/overlay1.png" id="27_yw5mg"]
+[ext_resource type="Texture2D" uid="uid://bjpn2j2bvwvep" path="res://assets/sprites/continue.png" id="28_355ln"]
+[ext_resource type="Texture2D" uid="uid://cb1fy6sda6pwm" path="res://assets/sprites/yes_selector.png" id="29_rjynn"]
+[ext_resource type="Texture2D" uid="uid://b38nof4i4ur2q" path="res://assets/sprites/no_selector.png" id="30_rf4jk"]
+[ext_resource type="Texture2D" uid="uid://ccs3cddtondty" path="res://assets/sprites/level.png" id="31_ll6ve"]
+[ext_resource type="Texture2D" uid="uid://ijgnyehegeht" path="res://assets/sprites/num_2.png" id="32_tru6k"]
+[ext_resource type="Script" path="res://scenes/stage/stage_label.gd" id="33_hlncj"]
+[ext_resource type="Script" path="res://scenes/level_label/level_label.gd" id="34_xt4np"]
 
 [node name="Fase03" type="Node2D"]
 
 [node name="ImagemDeFundo" type="Sprite2D" parent="."]
 position = Vector2(524.5, 301)
-scale = Vector2(0.999047, 1)
 texture = ExtResource("1_lqal8")
 
 [node name="BackGround" type="Sprite2D" parent="."]
-position = Vector2(398.941, 301)
-scale = Vector2(0.99, 0.99)
+position = Vector2(399.941, 301)
+scale = Vector2(0.994, 0.99)
 texture = ExtResource("2_l2nrv")
 
 [node name="Paddle" parent="." instance=ExtResource("2_7j6u5")]
@@ -77,7 +84,7 @@ wait_time = 3.226
 one_shot = true
 
 [node name="Borda6" type="Sprite2D" parent="."]
-visible = false
+modulate = Color(1, 1, 1, 0.52549)
 position = Vector2(401, 300)
 scale = Vector2(1.05, 1.05)
 texture = ExtResource("6_w3aee")
@@ -219,3 +226,68 @@ texture = ExtResource("24_sbfqd")
 visible = false
 position = Vector2(925, 423)
 texture = ExtResource("25_of4ca")
+
+[node name="BkOverlay" type="Sprite2D" parent="."]
+modulate = Color(0.262745, 0.215686, 1, 0.823529)
+position = Vector2(399.941, 301)
+scale = Vector2(0.994, 0.99)
+texture = ExtResource("27_yw5mg")
+
+[node name="ContinueYN" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(399.941, 301)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("28_355ln")
+
+[node name="YesSelector" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(270.941, 377)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("29_rjynn")
+
+[node name="NoSelector" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(526.941, 376)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("30_rf4jk")
+
+[node name="Level" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(326.941, 305)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("31_ll6ve")
+
+[node name="Level_num" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(521.941, 300)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("32_tru6k")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+script = ExtResource("33_hlncj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2"]
+anchors_preset = -1
+anchor_right = 0.0495238
+offset_left = 846.0
+offset_top = 417.0
+offset_right = 956.0
+offset_bottom = 470.0
+bbcode_enabled = true
+text = "STAGE"
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+script = ExtResource("34_xt4np")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer3"]
+anchors_preset = -1
+anchor_right = 0.38381
+anchor_bottom = 0.206667
+offset_left = 196.0
+offset_top = 242.0
+offset_right = 306.0
+offset_bottom = 295.0
+bbcode_enabled = true
+text = "LEVEL"
+metadata/_edit_use_anchors_ = true

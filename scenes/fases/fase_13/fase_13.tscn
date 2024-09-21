@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ba2xa7a1yjyko"]
+[gd_scene load_steps=32 format=3 uid="uid://ba2xa7a1yjyko"]
 
 [ext_resource type="Texture2D" uid="uid://cuk7lthad6lrt" path="res://assets/sprites/hud_bg_alpha.png" id="1_dtnog"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_uoati"]
@@ -26,6 +26,11 @@
 [ext_resource type="Texture2D" uid="uid://ck6tmkl2gip2r" path="res://assets/sprites/_25.png" id="23_vprec"]
 [ext_resource type="Texture2D" uid="uid://ug5ick6j4aju" path="res://assets/sprites/_50.png" id="24_c5yba"]
 [ext_resource type="Texture2D" uid="uid://c328yss8joxum" path="res://assets/sprites/no_bonus.png" id="25_fivy7"]
+[ext_resource type="Texture2D" uid="uid://ci8qc8ab88nn5" path="res://assets/sprites/overlay1.png" id="27_e2o3j"]
+[ext_resource type="Texture2D" uid="uid://bjpn2j2bvwvep" path="res://assets/sprites/continue.png" id="28_ab62n"]
+[ext_resource type="Texture2D" uid="uid://cb1fy6sda6pwm" path="res://assets/sprites/yes_selector.png" id="29_b5rp4"]
+[ext_resource type="Texture2D" uid="uid://b38nof4i4ur2q" path="res://assets/sprites/no_selector.png" id="30_d4e4b"]
+[ext_resource type="Script" path="res://scenes/stage/stage_label.gd" id="31_pl4kb"]
 
 [node name="Fase13" type="Node2D"]
 
@@ -75,6 +80,7 @@ wait_time = 3.226
 one_shot = true
 
 [node name="Borda6" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(401, 300)
 scale = Vector2(1.05, 1.05)
 texture = ExtResource("6_sqt4s")
@@ -216,3 +222,42 @@ texture = ExtResource("24_c5yba")
 visible = false
 position = Vector2(925, 423)
 texture = ExtResource("25_fivy7")
+
+[node name="BkOverlay" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.262745, 0.215686, 1, 0.823529)
+position = Vector2(399.941, 301)
+scale = Vector2(0.994, 0.99)
+texture = ExtResource("27_e2o3j")
+
+[node name="ContinueYN" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(399.941, 301)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("28_ab62n")
+
+[node name="YesSelector" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(270.941, 377)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("29_b5rp4")
+
+[node name="NoSelector" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(526.941, 376)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("30_d4e4b")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+script = ExtResource("31_pl4kb")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2"]
+anchors_preset = -1
+anchor_right = 0.0495238
+offset_left = 846.0
+offset_top = 417.0
+offset_right = 956.0
+offset_bottom = 470.0
+bbcode_enabled = true
+text = "STAGE"
+metadata/_edit_use_anchors_ = true

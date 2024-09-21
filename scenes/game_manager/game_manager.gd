@@ -12,7 +12,7 @@ var blocos_na_fase : int = 0
 @onready var timer_do_passar_de_fase : Timer = $TimerDoPassarDeFase
 
 @onready var current_scene_name = get_tree().current_scene.name
-@onready var score_label = get_node("/root/"+current_scene_name+"/CanvasLayer")
+@onready var score_label = get_node("/root/"+current_scene_name+"/CanvasLayer2")
 @onready var barra_verde = get_node("/root/"+current_scene_name+"/greenBar")
 @onready var barra_amarela = get_node("/root/"+current_scene_name+"/yellowBar")
 @onready var perfect = get_node("/root/"+current_scene_name+"/Perfect")
@@ -22,8 +22,14 @@ var blocos_na_fase : int = 0
 @onready var bonus_50 = get_node("/root/"+current_scene_name+"/50")
 @onready var no_bonus = get_node("/root/"+current_scene_name+"/NoBonus")
 @onready var ball = get_node("/root/"+current_scene_name+"/Bola")
+@onready var level_label = get_node("/root/"+current_scene_name+"/CanvasLayer3")
 
-#@onready var first_stage = "res://scenes/fases/fase_01/fase_01.tscn"
+@onready var black_overlay = get_node("/root/"+current_scene_name+"/BkOverlay")
+@onready var continue_yn = get_node("/root/"+current_scene_name+"/ContinueYN")
+@onready var yes_selector = get_node("/root/"+current_scene_name+"/YesSelector")
+@onready var no_selector = get_node("/root/"+current_scene_name+"/NoSelector")
+
+var title_screen : String = "res://scenes/title_screen/TitleScreen.tscn"
 
 #Controle dos bumpers
 @export_group("Controle dos Bumpers")
@@ -37,6 +43,8 @@ var iY : int = 1
 @export var jump_positions = Vector2i(xPosition[iX], yPosition[iY])
 var current_jump_index = 0
 
+@onready var select : AudioStreamPlayer = $SomSelector
+@onready var selected : AudioStreamPlayer = $SomChoosed
 @onready var point_sound : AudioStreamPlayer = $SomBonusPoints
 @onready var level_completed_sound : AudioStreamPlayer = $SomLevelCompleted
 @onready var perfect_sound : AudioStreamPlayer = $SomPerfect
@@ -45,40 +53,37 @@ var stage_node
 var stage_number
 var timer_node
 var score = 0
+var gameOver = false
+var firstTime = true
+var counter = 0
+var toggle = false
+var turnOnFadeOut = false
 
-#func enter():
-	##get_tree().change_scene_to_file(first_stage)
-	##timer_do_passar_de_fase.start()
-	##get_tree().reload_current_scene()
-	#print_debug("dentro de entrar")
-	#pass
 	
 func _ready():
 	buscar_blocos()
 	ativa_ou_desativa_paddles()
 	manage_show_stage_number_timer()
 	show_stage_number_sprite()
+	show_level_eligibility()
 	
-
 func _process(delta):
 	receber_inputs()
 	
-
 func receber_inputs() -> void:
-	# Reinicia a fase
 	jump_positions = Vector2i(xPosition[iX], yPosition[iY])
 	diagonalA.position = jump_positions
 	diagonalB.position = jump_positions
-	if Input.is_action_just_pressed("nextStage"):
-		print_debug("is_action_just_pressed(nextStage)")
-		timer_do_passar_de_fase.start()
-	if Input.is_action_just_pressed("reiniciar"):
-		#TODO - Continue -> YES
-		GlobalData.reset_lives()
-		get_tree().reload_current_scene()
+	#if Input.is_action_just_pressed("nextStage"):
+		#print_debug("is_action_just_pressed(nextStage)")
+		#timer_do_passar_de_fase.start()
+	#if Input.is_action_just_pressed("reiniciar"):
+		##TODO - Continue -> YES
+		#GlobalData.reset_lives()
+		#get_tree().reload_current_scene()
 	# Sai do jogo
 	if Input.is_action_just_pressed("sair"):
-		get_tree().quit()
+		get_tree().change_scene_to_file(title_screen)
 	#alterna rebatedores
 	# Verifique se a tecla "espaço" foi pressionada
 	if Input.is_action_just_pressed("shift-paddle"):
@@ -91,20 +96,62 @@ func receber_inputs() -> void:
 	# movimenta os paddles
 	if Input.is_action_just_pressed("mv-esquerdo"):
 		if iX > 0:
-			iX -= 1
-			
+			iX -= 1		
 	elif Input.is_action_just_pressed("mv-direito"):
 		if iX < 2:
 			iX += 1
-			
 	elif Input.is_action_just_pressed("mv-baixo"):
 		if iY < 2:
 			iY += 1
-			
 	elif Input.is_action_just_pressed("mv-cima"):
 		if iY > 0:
 			iY -= 1	
 						
+	#implementa gameOver
+	if (gameOver):
+		diagonalA.visible = false
+		diagonalB.visible = false
+		black_overlay.visible = true
+		continue_yn.visible = true
+		if (firstTime):
+			yes_selector.visible = true
+		if Input.is_action_just_pressed("shift-paddle"):
+			match counter:
+				0:  #continue
+					selected.play()
+					ball.turnOnFadeOut = true
+					await get_tree().create_timer(2.0).timeout
+					GlobalData.reset_lives()
+					ScoreManager.reset_player_score()
+					GlobalData.toggle_shouldIncreaseLevel(false)
+					get_tree().reload_current_scene()
+				1:  #nao continue 
+					selected.play()
+					ball.turnOnFadeOut = true
+					await get_tree().create_timer(1.0).timeout
+					get_tree().change_scene_to_file(title_screen)
+		if Input.is_action_just_pressed("mv-direito"):
+			toggle = true
+			change_selector(toggle)
+		elif Input.is_action_just_pressed("mv-esquerdo"):
+			toggle = false
+			change_selector(toggle)
+
+func change_selector(toggle: bool) -> void:
+	firstTime = false
+	if (toggle):
+		counter = 1
+	else:
+		counter = 0
+	match counter:
+		0:
+			select.play()
+			yes_selector.visible = true
+			no_selector.visible = false
+		1:
+			select.play()
+			yes_selector.visible = false
+			no_selector.visible = true
 	
 func buscar_blocos() -> void:
 	# Conta quantos Blocos há na fase
@@ -162,8 +209,9 @@ func add_25_points():
 	
 func _on_timer_do_passar_de_fase_timeout():
 	# Carrega a próxima fase
+	GlobalData.increase_stageCounter()
+	GlobalData.shouldIncreaseLevel = true
 	get_tree().change_scene_to_file(proxima_fase)
-	#res://scenes/fases/fase_02/fase_02.tscn
 	
 func ativa_ou_desativa_paddles() -> void:
 	if diagonalA.visible == true:
@@ -178,16 +226,20 @@ func manage_show_stage_number_timer():
 	timer_node.connect("timeout", _on_timer_timeout)
 	
 func show_stage_number_sprite():
-	var scene_name = get_tree().current_scene.name
-	#var scene_number_str = scene_name.trim_prefix("Fase")
-	stage_node = get_node("/root/" + scene_name + "/Stage")
-	stage_number = get_node("/root/" + scene_name + "/StageNum")
-	stage_node.visible = true
-	stage_number.visible = true
-	# Inicia um temporizador de 3 segundos
+	score_label.visible = true
 	timer_node.start(3.0)
 
 func _on_timer_timeout():
-	stage_node.visible = false
-	stage_number.visible = false
+	score_label.visible = false
+
+func show_level_eligibility():
+	if (current_scene_name == "Fase10" || current_scene_name == "Fase03"):
+		show_level_label()
+	
+func show_level_label():
+	black_overlay.visible = true
+	level_label.visible = true
+	await get_tree().create_timer(2.6).timeout
+	black_overlay.visible = false
+	level_label.visible = false
 

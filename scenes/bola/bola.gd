@@ -8,9 +8,12 @@ extends Area2D
 @onready var som_impacto_tela : AudioStreamPlayer = $SomImpactoTela
 @onready var som_bola_off : AudioStreamPlayer = $SomBolaOff
 @onready var som_game_over : AudioStreamPlayer = $SomGameOver
+@onready var game_over_music : AudioStreamPlayer = $GameOverMusic
 
 @onready var current_scene_name = get_tree().current_scene.name
 
+@onready var ball = get_node("/root/"+current_scene_name+"/Bola")
+@onready var game_manager = get_node("/root/"+current_scene_name+"/GameManager")
 @onready var barra_verde = get_node("/root/"+current_scene_name+"/greenBar")
 @onready var barra_amarela = get_node("/root/"+current_scene_name+"/yellowBar")
 @onready var barra_vermelha = get_node("/root/"+current_scene_name+"/redBar")
@@ -18,18 +21,21 @@ extends Area2D
 @onready var bola_monitor2 = get_node("/root/"+current_scene_name+"/BolaMonitor2")
 @onready var watch_out = get_node("/root/"+current_scene_name+"/WatchOut")
 @onready var game_over = get_node("/root/"+current_scene_name+"/GameOver")
+
 # Movimento da Bola
 var velocidade_da_bola : float = 400.0
 var posicao_inicial : Vector2 = Vector2(403, 500)
 var direcao_inicial : Vector2 = Vector2(0, 0)
 var nova_direcao : Vector2 = Vector2(0, 0)
 var hasDied : bool = false
+var shoudIncreaseLevel: bool = true
+var turnOnFadeOut = false
 
 # Limites da Bola
 var x_minimo : float = 0
 var x_maximo : float = 800
 var y_minimo : float = 0
-var y_maximo : float = 550
+var y_maximo : float = 600
 
 # Verificações
 var primeiro_lancamento : bool = true
@@ -54,10 +60,13 @@ func _process(delta):
 			
 	movimentar_bola(delta)
 	verificar_posicao_da_bola()
+	set_music_fade_out()
 	
 	
 func resetar_bola() -> void:
 	# Posiciona a Bola acima do Paddle
+	if GlobalData.lives <= 0:
+		ball.visible = false
 	position = posicao_inicial
 	
 
@@ -71,7 +80,6 @@ func movimentar_bola(delta : float) -> void:
 	# Movimenta a Bola com base em sua nova direção
 	position += nova_direcao * velocidade_da_bola * delta
 	
-
 func verificar_posicao_da_bola() -> void:
 	# Se a Bola estiver dentro da tela, a rebate ao colidir com as bordas
 	if position.y <= y_maximo:
@@ -159,7 +167,6 @@ func _on_body_entered(body):
 		body.receber_dano()
 		nova_direcao *= -1
 
-
 func _on_timer_da_bola_timeout():
 	sair_da_tela()
 	caiu_da_tela = false	
@@ -176,19 +183,51 @@ func update_lives_monitor():
 			gameOver()
 			
 func update_level():
-	if (current_scene_name == "Fase08"):
-		GlobalData.increase_level()
-	if (GlobalData.level == 2):
-		velocidade_da_bola = 600.0
-		#todo - show "level 2" on screen
+	#print_debug("LEVEL: ", GlobalData.level)
+	#print_debug("Stage Counter: ", GlobalData.stageCounter)
+	if (current_scene_name == "Fase10" || current_scene_name == "Fase03" && GlobalData.stageCounter > 1):
+		if (GlobalData.shouldIncreaseLevel):
+			GlobalData.increase_level()
+		#print_debug("LEVEL: ", GlobalData.level)	
+	match GlobalData.level:
+		1:
+			velocidade_da_bola = 400.0
+		2:
+			velocidade_da_bola = 500.0
+		3:
+			velocidade_da_bola = 600.0
+		4:
+			velocidade_da_bola = 700.0
+		5:
+			velocidade_da_bola = 800.0
+		6:
+			velocidade_da_bola = 900.0
+		7:
+			velocidade_da_bola = 1000.0
+		8: 
+			velocidade_da_bola = 1100.0
+		9: 
+			velocidade_da_bola = 1200.0	
+		10:
+			velocidade_da_bola = 1300.0
+	if (GlobalData.level > 10):
+		velocidade_da_bola = 1400.0
+	#print_debug("velocidade_bola: ", velocidade_da_bola)
 
 func gameOver():
 	# Exibir a tela de game over ou realizar outra ação
 	await get_tree().create_timer(1.0).timeout
 	som_game_over.play()
 	game_over.visible = true
-	#get_tree().paused = true
 	velocidade_da_bola = 0.0
-	#TODO - Display: Continue or Quit? 
-	#if quit go to main menu
-	#get_tree().quit()		
+	
+	await get_tree().create_timer(2.0).timeout
+	game_manager.gameOver = true
+	game_over_music.play()
+
+func set_music_fade_out() -> void:
+	# Diminui o volume da música em 1 dB a cada intervalo de tempo
+	if (turnOnFadeOut):
+		game_over_music.set_volume_db(game_over_music.volume_db - 0.3)
+		if game_over_music.volume_db <= -80:
+			game_over_music.stop()

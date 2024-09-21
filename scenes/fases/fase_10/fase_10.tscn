@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b2vmhs2i86i2i"]
+[gd_scene load_steps=35 format=3 uid="uid://b2vmhs2i86i2i"]
 
 [ext_resource type="Texture2D" uid="uid://cuk7lthad6lrt" path="res://assets/sprites/hud_bg_alpha.png" id="1_3h0b5"]
 [ext_resource type="PackedScene" uid="uid://csrr51oa8ywqk" path="res://scenes/paddle/paddle.tscn" id="2_u7q1d"]
@@ -26,6 +26,14 @@
 [ext_resource type="Texture2D" uid="uid://ck6tmkl2gip2r" path="res://assets/sprites/_25.png" id="23_m0ri5"]
 [ext_resource type="Texture2D" uid="uid://ug5ick6j4aju" path="res://assets/sprites/_50.png" id="24_wixw4"]
 [ext_resource type="Texture2D" uid="uid://c328yss8joxum" path="res://assets/sprites/no_bonus.png" id="25_t0nlo"]
+[ext_resource type="Texture2D" uid="uid://ci8qc8ab88nn5" path="res://assets/sprites/overlay1.png" id="27_og1gi"]
+[ext_resource type="Texture2D" uid="uid://bjpn2j2bvwvep" path="res://assets/sprites/continue.png" id="28_v2xd2"]
+[ext_resource type="Texture2D" uid="uid://cb1fy6sda6pwm" path="res://assets/sprites/yes_selector.png" id="29_uysir"]
+[ext_resource type="Texture2D" uid="uid://b38nof4i4ur2q" path="res://assets/sprites/no_selector.png" id="30_f8lpy"]
+[ext_resource type="Texture2D" uid="uid://ccs3cddtondty" path="res://assets/sprites/level.png" id="31_7t1fg"]
+[ext_resource type="Texture2D" uid="uid://ijgnyehegeht" path="res://assets/sprites/num_2.png" id="32_yeg22"]
+[ext_resource type="Script" path="res://scenes/stage/stage_label.gd" id="33_lm2g7"]
+[ext_resource type="Script" path="res://scenes/level_label/level_label.gd" id="34_axrdf"]
 
 [node name="Fase10" type="Node2D"]
 
@@ -35,7 +43,8 @@ scale = Vector2(0.999047, 1)
 texture = ExtResource("1_3h0b5")
 
 [node name="BackGround" type="Sprite2D" parent="."]
-position = Vector2(398.941, 301)
+position = Vector2(399.941, 300)
+scale = Vector2(0.99, 0.99)
 texture = ExtResource("2_udhxw")
 
 [node name="Paddle" parent="." instance=ExtResource("2_u7q1d")]
@@ -92,6 +101,7 @@ wait_time = 3.226
 one_shot = true
 
 [node name="Borda6" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(401, 300)
 scale = Vector2(1.05, 1.05)
 texture = ExtResource("6_o05ca")
@@ -161,6 +171,7 @@ position = Vector2(962, 69)
 texture = ExtResource("12_nhkbm")
 
 [node name="VidroSup2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(925, 68.5)
 scale = Vector2(0.855856, 0.696721)
 texture = ExtResource("13_6epyv")
@@ -176,6 +187,7 @@ position = Vector2(924, 425)
 texture = ExtResource("15_ox3ow")
 
 [node name="VidroInf2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(924.5, 433)
 scale = Vector2(0.944186, 0.976271)
 texture = ExtResource("16_30kpy")
@@ -231,3 +243,69 @@ texture = ExtResource("24_wixw4")
 visible = false
 position = Vector2(925, 423)
 texture = ExtResource("25_t0nlo")
+
+[node name="BkOverlay" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.262745, 0.215686, 1, 0.823529)
+position = Vector2(399.941, 301)
+scale = Vector2(0.994, 0.99)
+texture = ExtResource("27_og1gi")
+
+[node name="ContinueYN" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(399.941, 301)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("28_v2xd2")
+
+[node name="YesSelector" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(270.941, 377)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("29_uysir")
+
+[node name="NoSelector" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(526.941, 376)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("30_f8lpy")
+
+[node name="Level" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(326.941, 305)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("31_7t1fg")
+
+[node name="Level_num" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(521.941, 300)
+scale = Vector2(0.7, 0.697)
+texture = ExtResource("32_yeg22")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+script = ExtResource("33_lm2g7")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer2"]
+anchors_preset = -1
+anchor_right = 0.0495238
+offset_left = 846.0
+offset_top = 417.0
+offset_right = 956.0
+offset_bottom = 470.0
+bbcode_enabled = true
+text = "STAGE"
+metadata/_edit_use_anchors_ = true
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+script = ExtResource("34_axrdf")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer3"]
+anchors_preset = -1
+anchor_right = 0.38381
+anchor_bottom = 0.206667
+offset_left = 196.0
+offset_top = 242.0
+offset_right = 306.0
+offset_bottom = 295.0
+bbcode_enabled = true
+text = "LEVEL"
+metadata/_edit_use_anchors_ = true
